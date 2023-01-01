@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="QianShiMusicClient.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:QianShiMusicClient.Maui"
+    xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
+    xmlns:views="clr-namespace:QianShiMusicClient.Maui.Views"
+    xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    x:DataType="{x:Type vms:AppShellViewModel}"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Found"
+        ContentTemplate="{DataTemplate views:MainPage}"
+        Icon="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                         Glyph={x:Static models:IconFontIcons.Faxian}}"
+        Route="MainPage"
+        Shell.FlyoutItemIsVisible="False" />
+
+    <!--<TabBar
+        Title="首页"
+        Route="Home"
+        Shell.FlyoutItemIsVisible="False">
+        <ShellContent
+            Title="Found"
+            ContentTemplate="{DataTemplate views:FoundPage}"
+            Icon="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                             Glyph={x:Static models:IconFontIcons.Faxian}}"
+            Route="FoundPage" />
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate views:HomePage}"
+            Icon="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                             Glyph={x:Static models:IconFontIcons.Music}}"
+            Route="HomePage" />
+    </TabBar>-->
+
+</Shell>

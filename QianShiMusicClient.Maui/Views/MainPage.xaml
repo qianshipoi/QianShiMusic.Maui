@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="QianShiMusicClient.Maui.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    Title="MainPage"
+    x:DataType="{x:Type vms:MainViewModel}"
+    Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="*,Auto">
+        <Frame
+            Margin="0"
+            Padding="0"
+            BorderColor="Transparent"
+            Content="{Binding CurrentView}"
+            CornerRadius="0" />
+        <FlexLayout
+            Grid.Row="1"
+            BindableLayout.ItemsSource="{Binding TabBarItems}"
+            Direction="Row"
+            HeightRequest="54"
+            JustifyContent="SpaceEvenly">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:TabBarItem}">
+                    <Grid Padding="16,4" RowDefinitions="*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vms:MainViewModel}}, Path=JoinCommand}" CommandParameter="{Binding}" />
+                        </Grid.GestureRecognizers>
+                        <Grid.Resources>
+                            <Style TargetType="Label">
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsSelected}"
+                                        TargetType="Label"
+                                        Value="True">
+                                        <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <Label
+                            FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                            FontSize="24"
+                            HorizontalOptions="Center"
+                            Text="{Binding Icon}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="12"
+                            HorizontalOptions="Center"
+                            Text="{Binding Name}" />
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </Grid>
+</ContentPage>

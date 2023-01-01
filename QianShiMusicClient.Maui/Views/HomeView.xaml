@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="QianShiMusicClient.Maui.Views.HomeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    x:DataType="{x:Type vms:HomeViewModel}"
+    BackgroundColor="#F0EFED">
+    <Grid>
+        <Grid
+            x:Name="HeaderControl"
+            Padding="16,0"
+            ColumnDefinitions="Auto,*,Auto"
+            ColumnSpacing="8"
+            HeightRequest="54"
+            VerticalOptions="Start"
+            ZIndex="1">
+            <ImageButton
+                Command="{Binding OpenMenuCommand}"
+                HeightRequest="24"
+                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                   Color={StaticResource Gray900},
+                                   Glyph={x:Static models:IconFontIcons.Menu}}"
+                VerticalOptions="Center"
+                WidthRequest="24" />
+            <StackLayout
+                x:Name="HeaderTitleControl"
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Opacity="0"
+                Orientation="Horizontal">
+                <toolkit:AvatarView
+                    Margin="0,0,8,0"
+                    HeightRequest="32"
+                    ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                    WidthRequest="32" />
+                <Label Text="大hentai_loli控" VerticalOptions="Center" />
+            </StackLayout>
+            <ImageButton
+                Grid.Column="2"
+                HeightRequest="24"
+                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                   Color={StaticResource Gray900},
+                                   Glyph={x:Static models:IconFontIcons.Microphone}}"
+                VerticalOptions="Center"
+                WidthRequest="24" />
+        </Grid>
+        <ScrollView
+            x:Name="MainControl"
+            Padding="0,54,0,0"
+            VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <Grid x:Name="UserInfoControl" Margin="16,8">
+                    <Frame
+                        Margin="0,40,0,0"
+                        BackgroundColor="White"
+                        BorderColor="Transparent"
+                        HeightRequest="120"
+                        VerticalOptions="Start" />
+                    <StackLayout>
+                        <toolkit:AvatarView
+                            Margin="0,0,0,8"
+                            CornerRadius="40"
+                            HeightRequest="80"
+                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="大hentai_loli控"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Margin="0,8"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <StackLayout.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
+                                </Style>
+                            </StackLayout.Resources>
+                            <Label Text="31 关注" />
+                            <Label Text="7 粉丝" />
+                            <Label Text="Lv.9" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid Margin="16,8">
+                    <Frame
+                        Margin="0,40,0,0"
+                        BackgroundColor="White"
+                        BorderColor="Transparent"
+                        HeightRequest="120"
+                        VerticalOptions="Start" />
+                    <StackLayout>
+                        <toolkit:AvatarView
+                            Margin="0,0,0,8"
+                            CornerRadius="40"
+                            HeightRequest="80"
+                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="大hentai_loli控"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Margin="0,8"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <StackLayout.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
+                                </Style>
+                            </StackLayout.Resources>
+                            <Label Text="31 关注" />
+                            <Label Text="7 粉丝" />
+                            <Label Text="Lv.9" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid Margin="16,8">
+                    <Frame
+                        Margin="0,40,0,0"
+                        BackgroundColor="White"
+                        BorderColor="Transparent"
+                        HeightRequest="120"
+                        VerticalOptions="Start" />
+                    <StackLayout>
+                        <toolkit:AvatarView
+                            Margin="0,0,0,8"
+                            CornerRadius="40"
+                            HeightRequest="80"
+                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="大hentai_loli控"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Margin="0,8"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <StackLayout.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
+                                </Style>
+                            </StackLayout.Resources>
+                            <Label Text="31 关注" />
+                            <Label Text="7 粉丝" />
+                            <Label Text="Lv.9" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid Margin="16,8">
+                    <Frame
+                        Margin="0,40,0,0"
+                        BackgroundColor="White"
+                        BorderColor="Transparent"
+                        HeightRequest="120"
+                        VerticalOptions="Start" />
+                    <StackLayout>
+                        <toolkit:AvatarView
+                            Margin="0,0,0,8"
+                            CornerRadius="40"
+                            HeightRequest="80"
+                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="大hentai_loli控"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Margin="0,8"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <StackLayout.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
+                                </Style>
+                            </StackLayout.Resources>
+                            <Label Text="31 关注" />
+                            <Label Text="7 粉丝" />
+                            <Label Text="Lv.9" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid Margin="16,8">
+                    <Frame
+                        Margin="0,40,0,0"
+                        BackgroundColor="White"
+                        BorderColor="Transparent"
+                        HeightRequest="120"
+                        VerticalOptions="Start" />
+                    <StackLayout>
+                        <toolkit:AvatarView
+                            Margin="0,0,0,8"
+                            CornerRadius="40"
+                            HeightRequest="80"
+                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                            WidthRequest="80" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="大hentai_loli控"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Margin="0,8"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <StackLayout.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
+                                </Style>
+                            </StackLayout.Resources>
+                            <Label Text="31 关注" />
+                            <Label Text="7 粉丝" />
+                            <Label Text="Lv.9" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>
