@@ -5,7 +5,7 @@ namespace QianShiMusicClient.Maui.ViewModels;
 public partial class ViewModelBase : ObservableObject
 {
     [ObservableProperty]
-    string _title;
+    string? _title;
 
     [ObservableProperty]
     bool _isBusy;

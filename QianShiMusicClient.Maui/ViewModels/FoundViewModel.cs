@@ -8,7 +8,6 @@ namespace QianShiMusicClient.Maui.ViewModels;
 
 public sealed partial class FoundViewModel : ViewModelBase
 {
-
     public ObservableCollection<Carousel> Carousels { get; private set; }
 
     public ObservableCollection<HomeOption> Options { get; private set; }

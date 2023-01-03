@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="QianShiMusicClient.Maui.Views.Login.LoginByPhonePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="手机号登录"
+    NavigationPage.HasNavigationBar="True">
+    <VerticalStackLayout Margin="0,40" Padding="16,0">
+        <Entry FontSize="22" Placeholder="请输入手机号" />
+        <Button
+            Margin="0,24"
+            CornerRadius="24"
+            FontSize="18"
+            Text="下一步" />
+        <Button
+            CornerRadius="24"
+            FontSize="18"
+            Text="密码登录" />
+        <Label
+            Margin="0,16,0,0"
+            HorizontalOptions="Center"
+            Text="找回账号"
+            TextColor="Blue" />
+    </VerticalStackLayout>
+</ContentPage>

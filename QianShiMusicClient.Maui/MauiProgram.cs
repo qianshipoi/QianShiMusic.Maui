@@ -7,7 +7,9 @@ using Mopups.Hosting;
 using QianShiMusicClient.Maui.Models;
 using QianShiMusicClient.Maui.Services;
 using QianShiMusicClient.Maui.ViewModels;
+using QianShiMusicClient.Maui.ViewModels.Login;
 using QianShiMusicClient.Maui.Views;
+using QianShiMusicClient.Maui.Views.Login;
 
 namespace QianShiMusicClient.Maui;
 
@@ -46,6 +48,13 @@ public static class MauiProgram
         services.AddSingleton<HomeView, HomeViewModel>();
 
         services.AddSingleton<IPopupService, PopupService>();
+
+        services.AddSingleton<LoginSelectionPage, LoginSelectionViewModel>();
+        services.AddSingleton<INavigationService, NavigationService>();
+
+        services.AddTransient<LoginByEmailPage>();
+        services.AddTransient<LoginByPhonePage>();
+        services.AddTransient<ILoginService, LoginService>();
 
         //services.AddTransientWithShellRoute<MessageDetailPage, MessageDetailViewModel>(nameof(MessageDetailPage));
         return services;

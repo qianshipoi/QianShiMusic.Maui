@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="QianShiMusicClient.Maui.Views.LoginSelectionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
+    xmlns:vmsl="clr-namespace:QianShiMusicClient.Maui.ViewModels.Login"
+    Title="LoginSelectionPage"
+    x:DataType="{x:Type vmsl:LoginSelectionViewModel}"
+    NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout
+        Padding="60,0"
+        Spacing="16"
+        VerticalOptions="Center">
+        <Button Command="{Binding GoToLoginByPhonePageCommand}" Text="手机号登录" />
+        <Button Command="{Binding GoToLoginByEmailPageCommand}" Text="网易邮箱登录" />
+    </VerticalStackLayout>
+</ContentPage>
