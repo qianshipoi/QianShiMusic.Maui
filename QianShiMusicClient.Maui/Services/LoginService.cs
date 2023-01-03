@@ -35,45 +35,24 @@ public class LoginService : ILoginService
     {
         using var client = new HttpClient();
         client.BaseAddress = new Uri(AppConsts.MusicApiBaseUrl);
-        try
-        {
-            var response = await client.GetFromJsonAsync<LoginResponse>($"/login/cellphone?phone={phoneNumber}&md5_password={password.ToMd5()}&t={DateTime.Now.Ticks}", cancellationToken);
-            return await HandleLoginAsync(response);
-        }
-        catch (Exception)
-        {
-            return false;
-        }
+        var response = await client.GetFromJsonAsync<LoginResponse>($"/login/cellphone?phone={phoneNumber}&md5_password={password.ToMd5()}&t={DateTime.Now.Ticks}", cancellationToken);
+        return await HandleLoginAsync(response);
     }
 
     public async Task<bool> PhoneCaptchaLoginAsync(string phoneNumber, string captcha, CancellationToken cancellationToken = default)
     {
         using var client = new HttpClient();
         client.BaseAddress = new Uri(AppConsts.MusicApiBaseUrl);
-        try
-        {
-            var response = await client.GetFromJsonAsync<LoginResponse>($"/login/cellphone?phone={phoneNumber}&captcha={captcha}&t={DateTime.Now.Ticks}", cancellationToken);
-            return await HandleLoginAsync(response);
-        }
-        catch (Exception)
-        {
-            return false;
-        }
+        var response = await client.GetFromJsonAsync<LoginResponse>($"/login/cellphone?phone={phoneNumber}&captcha={captcha}&t={DateTime.Now.Ticks}", cancellationToken);
+        return await HandleLoginAsync(response);
     }
 
     public async Task<bool> EmailLoginAsync(string email, string password, CancellationToken cancellationToken = default)
     {
         using var client = new HttpClient();
         client.BaseAddress = new Uri(AppConsts.MusicApiBaseUrl);
-        try
-        {
-            var response = await client.GetFromJsonAsync<LoginResponse>($"/login?email={email}&md5_password={password}&t={DateTime.Now.Ticks}", cancellationToken);
-            return await HandleLoginAsync(response);
-        }
-        catch (Exception)
-        {
-            return false;
-        }
+        var response = await client.GetFromJsonAsync<LoginResponse>($"/login?email={email}&md5_password={password}&t={DateTime.Now.Ticks}", cancellationToken);
+        return await HandleLoginAsync(response);
     }
 }
 
