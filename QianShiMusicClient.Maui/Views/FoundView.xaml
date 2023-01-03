@@ -37,252 +37,257 @@
                 WidthRequest="24" />
         </Grid>
         <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-            <StackLayout>
-                <Grid HeightRequest="160" VerticalOptions="Start">
-                    <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding Carousels}">
+            <RefreshView
+                Command="{Binding UpdateDataCommand}"
+                IsRefreshing="{Binding IsBusy}"
+                RefreshColor="{StaticResource Primary}">
+                <StackLayout>
+                    <Grid HeightRequest="160" VerticalOptions="Start">
+                        <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding Carousels}">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Carousel}">
+                                    <Frame
+                                        Margin="16,8"
+                                        Padding="0"
+                                        BorderColor="{StaticResource Gray100}"
+                                        CornerRadius="8"
+                                        VerticalOptions="Start">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding Path=Path}"
+                                            VerticalOptions="FillAndExpand" />
+                                    </Frame>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <IndicatorView
+                            x:Name="indicatorView"
+                            Margin="32,0,0,20"
+                            HorizontalOptions="Start"
+                            IndicatorColor="DarkGray"
+                            SelectedIndicatorColor="LightGray"
+                            VerticalOptions="EndAndExpand" />
+                    </Grid>
+                    <CollectionView Margin="0,8" ItemsSource="{Binding Options}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type models:HomeOption}">
+                                <StackLayout Margin="16,0" WidthRequest="46">
+                                    <Label
+                                        FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                        FontSize="28"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Icon}"
+                                        TextColor="{StaticResource Primary}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Margin="0,8"
+                                        FontSize="12"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Name}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Grid Margin="16,8" ColumnDefinitions="*,Auto">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                HorizontalOptions="Start"
+                                Text="推荐歌单"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="{x:Static models:IconFontIcons.ArrowRight}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                        <ImageButton
+                            Grid.Column="1"
+                            HeightRequest="24"
+                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                               Color={StaticResource Gray300},
+                                               Glyph={x:Static models:IconFontIcons.More_android_light}}"
+                            VerticalOptions="Center"
+                            WidthRequest="24" />
+                    </Grid>
+                    <ScrollView
+                        Margin="0,8"
+                        HorizontalScrollBarVisibility="Never"
+                        Orientation="Horizontal">
+                        <StackLayout
+                            Padding="12,0"
+                            BindableLayout.ItemsSource="{Binding Songs}"
+                            Orientation="Horizontal">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Song}">
+                                    <StackLayout Margin="4,0" WidthRequest="140">
+                                        <Frame
+                                            Padding="0"
+                                            BackgroundColor="{StaticResource Gray100}"
+                                            CornerRadius="8"
+                                            HeightRequest="140"
+                                            WidthRequest="140">
+                                            <Image Source="{Binding PicUrl}" />
+                                        </Frame>
+                                        <Label
+                                            Margin="0,4"
+                                            FontSize="12"
+                                            LineBreakMode="CharacterWrap"
+                                            Text="{Binding Name}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                    <Grid Margin="16,8" ColumnDefinitions="*,Auto">
+                        <StackLayout Orientation="Horizontal">
+                            <ImageButton
+                                Grid.Column="1"
+                                HeightRequest="20"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Color={StaticResource Gray300},
+                                                   Glyph={x:Static models:IconFontIcons.Refresh}}"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                            <Label
+                                Margin="4,0"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                HorizontalOptions="Start"
+                                Text="吹来一阵日系风"
+                                VerticalOptions="Center" />
+                            <Button
+                                Padding="0"
+                                CornerRadius="12"
+                                FontSize="12"
+                                HeightRequest="24"
+                                Text="播放" />
+                        </StackLayout>
+                        <ImageButton
+                            Grid.Column="1"
+                            HeightRequest="24"
+                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                               Color={StaticResource Gray300},
+                                               Glyph={x:Static models:IconFontIcons.More_android_light}}"
+                            VerticalOptions="Center"
+                            WidthRequest="24" />
+                    </Grid>
+                    <CarouselView
+                        ItemsSource="{Binding RelevantSongs}"
+                        Loop="False"
+                        PeekAreaInsets="16">
                         <CarouselView.ItemTemplate>
-                            <DataTemplate x:DataType="{x:Type models:Carousel}">
-                                <Frame
-                                    Margin="16,8"
-                                    Padding="0"
-                                    BorderColor="{StaticResource Gray100}"
-                                    CornerRadius="8"
-                                    VerticalOptions="Start">
-                                    <Image
-                                        Aspect="AspectFill"
-                                        HorizontalOptions="FillAndExpand"
-                                        Source="{Binding Path=Path}"
-                                        VerticalOptions="FillAndExpand" />
-                                </Frame>
+                            <DataTemplate>
+                                <StackLayout
+                                    Margin="-16,0,18,0"
+                                    Padding="16,0,0,0"
+                                    BindableLayout.ItemsSource="{Binding}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate x:DataType="{x:Type models:Song}">
+                                            <Grid
+                                                Margin="0,4"
+                                                ColumnDefinitions="Auto,*,Auto"
+                                                HeightRequest="60"
+                                                RowDefinitions="*,*">
+                                                <Frame
+                                                    Grid.RowSpan="2"
+                                                    Margin="0,0,8,0"
+                                                    Padding="0"
+                                                    HeightRequest="60"
+                                                    WidthRequest="60">
+                                                    <Image Source="{Binding PicUrl}" />
+                                                </Frame>
+                                                <Label
+                                                    Grid.Column="1"
+                                                    FontAttributes="Bold"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Name}"
+                                                    VerticalOptions="End" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    FontSize="12"
+                                                    Text="东京塔子"
+                                                    TextColor="{StaticResource Gray100}" />
+                                                <ImageButton
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="2"
+                                                    HeightRequest="24"
+                                                    Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                                       Color={StaticResource Gray300},
+                                                                       Glyph={x:Static models:IconFontIcons.Play}}"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="24" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <IndicatorView
-                        x:Name="indicatorView"
-                        Margin="32,0,0,20"
-                        HorizontalOptions="Start"
-                        IndicatorColor="DarkGray"
-                        SelectedIndicatorColor="LightGray"
-                        VerticalOptions="EndAndExpand" />
-                </Grid>
-                <CollectionView Margin="0,8" ItemsSource="{Binding Options}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="{x:Type models:HomeOption}">
-                            <StackLayout Margin="16,0" WidthRequest="46">
-                                <Label
-                                    FontFamily="{x:Static models:IconFontIcons.FontFamily}"
-                                    FontSize="28"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding Icon}"
-                                    TextColor="Red"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Margin="0,8"
-                                    FontSize="12"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding Name}" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <Grid Margin="16,8" ColumnDefinitions="*,Auto">
-                    <StackLayout Orientation="Horizontal">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="16"
-                            HorizontalOptions="Start"
-                            Text="推荐歌单"
-                            VerticalOptions="Center" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontFamily="{x:Static models:IconFontIcons.FontFamily}"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Text="{x:Static models:IconFontIcons.ArrowRight}"
-                            VerticalOptions="Center" />
-                    </StackLayout>
-                    <ImageButton
-                        Grid.Column="1"
-                        HeightRequest="24"
-                        Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
-                                           Color={StaticResource Gray300},
-                                           Glyph={x:Static models:IconFontIcons.More_android_light}}"
-                        VerticalOptions="Center"
-                        WidthRequest="24" />
-                </Grid>
-                <ScrollView
-                    Margin="0,8"
-                    HorizontalScrollBarVisibility="Never"
-                    Orientation="Horizontal">
-                    <StackLayout
-                        Padding="12,0"
-                        BindableLayout.ItemsSource="{Binding Songs}"
-                        Orientation="Horizontal">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate x:DataType="{x:Type models:Song}">
-                                <StackLayout Margin="4,0" WidthRequest="140">
-                                    <Frame
-                                        Padding="0"
-                                        BackgroundColor="{StaticResource Gray100}"
-                                        CornerRadius="8"
-                                        HeightRequest="140"
-                                        WidthRequest="140">
-                                        <Image Source="{Binding PicUrl}" />
-                                    </Frame>
-                                    <Label
-                                        Margin="0,4"
-                                        FontSize="12"
-                                        LineBreakMode="CharacterWrap"
-                                        Text="{Binding Name}" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                </ScrollView>
-                <Grid Margin="16,8" ColumnDefinitions="*,Auto">
-                    <StackLayout Orientation="Horizontal">
+                    <Grid Margin="16,8" ColumnDefinitions="*,Auto">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                HorizontalOptions="Start"
+                                Text="XXX的歌单雷达"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                FontSize="18"
+                                HorizontalOptions="Center"
+                                Text="{x:Static models:IconFontIcons.ArrowRight}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
                         <ImageButton
                             Grid.Column="1"
-                            HeightRequest="20"
+                            HeightRequest="24"
                             Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
                                                Color={StaticResource Gray300},
-                                               Glyph={x:Static models:IconFontIcons.Refresh}}"
+                                               Glyph={x:Static models:IconFontIcons.More_android_light}}"
                             VerticalOptions="Center"
-                            WidthRequest="20" />
-                        <Label
-                            Margin="4,0"
-                            FontAttributes="Bold"
-                            FontSize="16"
-                            HorizontalOptions="Start"
-                            Text="吹来一阵日系风"
-                            VerticalOptions="Center" />
-                        <Button
-                            Padding="0"
-                            CornerRadius="12"
-                            FontSize="12"
-                            HeightRequest="24"
-                            Text="播放" />
-                    </StackLayout>
-                    <ImageButton
-                        Grid.Column="1"
-                        HeightRequest="24"
-                        Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
-                                           Color={StaticResource Gray300},
-                                           Glyph={x:Static models:IconFontIcons.More_android_light}}"
-                        VerticalOptions="Center"
-                        WidthRequest="24" />
-                </Grid>
-                <CarouselView
-                    ItemsSource="{Binding RelevantSongs}"
-                    Loop="False"
-                    PeekAreaInsets="16">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout
-                                Margin="-16,0,18,0"
-                                Padding="16,0,0,0"
-                                BindableLayout.ItemsSource="{Binding}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate x:DataType="{x:Type models:Song}">
-                                        <Grid
-                                            Margin="0,4"
-                                            ColumnDefinitions="Auto,*,Auto"
-                                            HeightRequest="60"
-                                            RowDefinitions="*,*">
-                                            <Frame
-                                                Grid.RowSpan="2"
-                                                Margin="0,0,8,0"
-                                                Padding="0"
-                                                HeightRequest="60"
-                                                WidthRequest="60">
-                                                <Image Source="{Binding PicUrl}" />
-                                            </Frame>
-                                            <Label
-                                                Grid.Column="1"
-                                                FontAttributes="Bold"
-                                                LineBreakMode="TailTruncation"
-                                                Text="{Binding Name}"
-                                                VerticalOptions="End" />
-                                            <Label
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                FontSize="12"
-                                                Text="东京塔子"
-                                                TextColor="{StaticResource Gray100}" />
-                                            <ImageButton
-                                                Grid.RowSpan="2"
-                                                Grid.Column="2"
-                                                HeightRequest="24"
-                                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
-                                                                   Color={StaticResource Gray300},
-                                                                   Glyph={x:Static models:IconFontIcons.Play}}"
-                                                VerticalOptions="Center"
-                                                WidthRequest="24" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <Grid Margin="16,8" ColumnDefinitions="*,Auto">
-                    <StackLayout Orientation="Horizontal">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="16"
-                            HorizontalOptions="Start"
-                            Text="XXX的歌单雷达"
-                            VerticalOptions="Center" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontFamily="{x:Static models:IconFontIcons.FontFamily}"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Text="{x:Static models:IconFontIcons.ArrowRight}"
-                            VerticalOptions="Center" />
-                    </StackLayout>
-                    <ImageButton
-                        Grid.Column="1"
-                        HeightRequest="24"
-                        Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
-                                           Color={StaticResource Gray300},
-                                           Glyph={x:Static models:IconFontIcons.More_android_light}}"
-                        VerticalOptions="Center"
-                        WidthRequest="24" />
-                </Grid>
-                <ScrollView
-                    Margin="0,8"
-                    HorizontalScrollBarVisibility="Never"
-                    Orientation="Horizontal">
-                    <StackLayout
-                        Padding="12,0"
-                        BindableLayout.ItemsSource="{Binding Songs}"
+                            WidthRequest="24" />
+                    </Grid>
+                    <ScrollView
+                        Margin="0,8"
+                        HorizontalScrollBarVisibility="Never"
                         Orientation="Horizontal">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate x:DataType="{x:Type models:Song}">
-                                <StackLayout Margin="4,0" WidthRequest="140">
-                                    <Frame
-                                        Padding="0"
-                                        BackgroundColor="{StaticResource Gray100}"
-                                        CornerRadius="8"
-                                        HeightRequest="140"
-                                        WidthRequest="140">
-                                        <Image Source="{Binding PicUrl}" />
-                                    </Frame>
-                                    <Label
-                                        Margin="0,4"
-                                        FontSize="12"
-                                        LineBreakMode="CharacterWrap"
-                                        Text="{Binding Name}" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                </ScrollView>
-            </StackLayout>
+                        <StackLayout
+                            Padding="12,0"
+                            BindableLayout.ItemsSource="{Binding Songs}"
+                            Orientation="Horizontal">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Song}">
+                                    <StackLayout Margin="4,0" WidthRequest="140">
+                                        <Frame
+                                            Padding="0"
+                                            BackgroundColor="{StaticResource Gray100}"
+                                            CornerRadius="8"
+                                            HeightRequest="140"
+                                            WidthRequest="140">
+                                            <Image Source="{Binding PicUrl}" />
+                                        </Frame>
+                                        <Label
+                                            Margin="0,4"
+                                            FontSize="12"
+                                            LineBreakMode="CharacterWrap"
+                                            Text="{Binding Name}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </RefreshView>
         </ScrollView>
     </Grid>
 </ContentView>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage
+    x:Class="QianShiMusicClient.Maui.Views.Popups.MoreOptionPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ma="clr-namespace:Mopups.Animations;assembly=Mopups"
+    xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource ModalBackground}">
+    <mopups:PopupPage.Animation>
+        <ma:MoveAnimation DurationIn="250" DurationOut="200" />
+    </mopups:PopupPage.Animation>
+    <StackLayout VerticalOptions="EndAndExpand">
+        <Border
+            BackgroundColor="White"
+            StrokeShape="RoundRectangle 25,25,0,0"
+            StrokeThickness="0">
+            <StackLayout>
+                <Label
+                    x:Name="TitleControl"
+                    Margin="16"
+                    TextColor="{StaticResource Gray300}"
+                    VerticalOptions="Center" />
+                <Border BackgroundColor="{StaticResource Gray300}" HeightRequest="1" />
+                <ListView
+                    x:Name="OptionsControl"
+                    Margin="0,8"
+                    ItemTapped="OptionsControl_ItemTapped"
+                    RowHeight="48"
+                    SelectionMode="None"
+                    SeparatorVisibility="None"
+                    VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell x:DataType="{x:Type models:MoreOption}">
+                                <Grid
+                                    Margin="16,0"
+                                    ColumnDefinitions="Auto,*"
+                                    ColumnSpacing="8">
+                                    <Label
+                                        FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                        FontSize="22"
+                                        Text="{Binding Icon}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Border>
+    </StackLayout>
+</mopups:PopupPage>

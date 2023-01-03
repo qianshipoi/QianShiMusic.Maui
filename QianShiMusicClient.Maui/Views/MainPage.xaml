@@ -10,12 +10,52 @@
     x:DataType="{x:Type vms:MainViewModel}"
     Shell.NavBarIsVisible="False">
     <Grid RowDefinitions="*,Auto">
-        <Frame
-            Margin="0"
-            Padding="0"
-            BorderColor="Transparent"
-            Content="{Binding CurrentView}"
-            CornerRadius="0" />
+        <Grid BackgroundColor="{StaticResource Gray100}">
+            <Frame
+                Margin="0"
+                Padding="0,0,0,44"
+                BorderColor="Transparent"
+                Content="{Binding CurrentView}"
+                CornerRadius="0" />
+            <Grid
+                Padding="16,0"
+                ColumnDefinitions="Auto,*,Auto,Auto"
+                ColumnSpacing="8"
+                HeightRequest="44"
+                VerticalOptions="End">
+                <toolkit:AvatarView
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    ImageSource="https://p1.music.126.net/-bT1aNnjdESQwlw38D5eJg==/109951164323807218.jpg"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+                <Label
+                    Grid.Column="1"
+                    LineBreakMode="TailTruncation"
+                    VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="猫 (The First Take Version)" />
+                            <Span Text=" - 北村匠海" TextColor="{StaticResource Gray300}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <ImageButton
+                    Grid.Column="2"
+                    HeightRequest="24"
+                    Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                       Color={StaticResource Gray950},
+                                       Glyph={x:Static models:IconFontIcons.Playfill}}"
+                    WidthRequest="24" />
+                <ImageButton
+                    Grid.Column="3"
+                    HeightRequest="24"
+                    Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                       Color={StaticResource Gray950},
+                                       Glyph={x:Static models:IconFontIcons.Gedan}}"
+                    WidthRequest="24" />
+            </Grid>
+        </Grid>
         <FlexLayout
             Grid.Row="1"
             BindableLayout.ItemsSource="{Binding TabBarItems}"

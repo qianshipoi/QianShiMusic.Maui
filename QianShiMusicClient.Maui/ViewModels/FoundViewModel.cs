@@ -60,6 +60,20 @@ public sealed partial class FoundViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    async Task UpdateData()
+    {
+        IsBusy = true;
+        try
+        {
+            await Task.Delay(2000);
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
     void OpenMenu()
     {
         Shell.Current.FlyoutBehavior = FlyoutBehavior.Locked;

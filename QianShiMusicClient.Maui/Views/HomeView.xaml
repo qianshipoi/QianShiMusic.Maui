@@ -88,150 +88,238 @@
                         </StackLayout>
                     </StackLayout>
                 </Grid>
-                <Grid Margin="16,8">
-                    <Frame
-                        Margin="0,40,0,0"
-                        BackgroundColor="White"
-                        BorderColor="Transparent"
-                        HeightRequest="120"
-                        VerticalOptions="Start" />
+                <Frame
+                    Margin="16,8"
+                    Padding="0,0,0,0"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    VerticalOptions="Start">
                     <StackLayout>
+                        <toolkit:UniformItemsLayout BindableLayout.ItemsSource="{Binding Options}" MaxColumns="4">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:HomeOption}">
+                                    <Grid
+                                        Margin="0,16,0,8"
+                                        RowDefinitions="*,Auto"
+                                        RowSpacing="8">
+                                        <Label
+                                            FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                            FontSize="32"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Icon}"
+                                            TextColor="{StaticResource Primary}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            FontSize="12"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Name}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </toolkit:UniformItemsLayout>
+                        <Border
+                            Margin="0,4,0,0"
+                            BackgroundColor="#F5F5F5"
+                            HeightRequest="1" />
+                        <Grid Padding="16">
+                            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                                <Label
+                                    Margin="0,0,4,0"
+                                    FontAttributes="Bold"
+                                    FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Static models:IconFontIcons.Add}"
+                                    TextColor="{StaticResource Gray300}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontSize="12"
+                                    Text="音乐应用"
+                                    TextColor="{StaticResource Gray300}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                    Margin="16,8"
+                    Padding="16"
+                    BorderColor="Transparent">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="8"
+                        RowDefinitions="*,*"
+                        RowSpacing="4">
                         <toolkit:AvatarView
-                            Margin="0,0,0,8"
-                            CornerRadius="40"
-                            HeightRequest="80"
-                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
-                            WidthRequest="80" />
+                            Grid.RowSpan="2"
+                            CornerRadius="8"
+                            HeightRequest="60"
+                            ImageSource="https://p1.music.126.net/-bT1aNnjdESQwlw38D5eJg==/109951164323807218.jpg"
+                            WidthRequest="60" />
                         <Label
+                            Grid.Column="1"
                             FontAttributes="Bold"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="大hentai_loli控"
-                            VerticalOptions="Center" />
-                        <StackLayout
-                            Margin="0,8"
-                            HorizontalOptions="Center"
-                            Orientation="Horizontal"
-                            Spacing="16">
-                            <StackLayout.Resources>
-                                <Style TargetType="Label">
-                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
-                                </Style>
-                            </StackLayout.Resources>
-                            <Label Text="31 关注" />
-                            <Label Text="7 粉丝" />
-                            <Label Text="Lv.9" />
+                            Text="我喜欢的音乐"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="12"
+                            Text="193首"
+                            TextColor="{StaticResource Gray300}"
+                            VerticalOptions="Start" />
+                        <Border
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            Padding="12,6"
+                            Stroke="#F5F5F5"
+                            StrokeShape="RoundRectangle 40"
+                            StrokeThickness="2"
+                            VerticalOptions="Center">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                    FontSize="22"
+                                    Text="{x:Static models:IconFontIcons.HeartFill}"
+                                    TextColor="{StaticResource Primary}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="4,0,0,0"
+                                    Text="心动模式"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Border>
+                    </Grid>
+                </Frame>
+                <Frame
+                    Margin="16,8"
+                    Padding="16,16,8,16"
+                    BorderColor="Transparent">
+                    <StackLayout>
+                        <Grid ColumnDefinitions="*,Auto,Auto" HeightRequest="32">
+                            <Label
+                                Text="创建歌单(13个)"
+                                TextColor="{StaticResource Gray300}"
+                                VerticalOptions="Center" />
+                            <ImageButton
+                                Grid.Column="1"
+                                HeightRequest="26"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Color={StaticResource Gray100},
+                                                   Glyph={x:Static models:IconFontIcons.Add}}" />
+                            <ImageButton
+                                Grid.Column="2"
+                                Command="{Binding CreatePlaylistMoreOptionCommand}"
+                                HeightRequest="22"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Color={StaticResource Gray100},
+                                                   Glyph={x:Static models:IconFontIcons.More_android_light}}" />
+                        </Grid>
+                        <StackLayout Margin="0,8,0,0" BindableLayout.ItemsSource="{Binding Playlists}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Playlist}">
+                                    <Grid
+                                        ColumnDefinitions="Auto,*,Auto"
+                                        ColumnSpacing="8"
+                                        RowDefinitions="*,*"
+                                        RowSpacing="4">
+                                        <toolkit:AvatarView
+                                            Grid.RowSpan="2"
+                                            CornerRadius="8"
+                                            HeightRequest="60"
+                                            ImageSource="{Binding PicUrl}"
+                                            WidthRequest="60" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="End" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="12"
+                                            Text="{Binding SongCount, StringFormat='{0}首'}"
+                                            TextColor="{StaticResource Gray300}"
+                                            VerticalOptions="Start" />
+
+                                        <ImageButton
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            HeightRequest="22"
+                                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                               Color={StaticResource Gray100},
+                                                               Glyph={x:Static models:IconFontIcons.More_android_light}}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </StackLayout>
-                </Grid>
-                <Grid Margin="16,8">
-                    <Frame
-                        Margin="0,40,0,0"
-                        BackgroundColor="White"
-                        BorderColor="Transparent"
-                        HeightRequest="120"
-                        VerticalOptions="Start" />
+                </Frame>
+                <Frame
+                    Margin="16,8"
+                    Padding="16,16,8,16"
+                    BorderColor="Transparent">
                     <StackLayout>
-                        <toolkit:AvatarView
-                            Margin="0,0,0,8"
-                            CornerRadius="40"
-                            HeightRequest="80"
-                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
-                            WidthRequest="80" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="大hentai_loli控"
-                            VerticalOptions="Center" />
-                        <StackLayout
-                            Margin="0,8"
-                            HorizontalOptions="Center"
-                            Orientation="Horizontal"
-                            Spacing="16">
-                            <StackLayout.Resources>
-                                <Style TargetType="Label">
-                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
-                                </Style>
-                            </StackLayout.Resources>
-                            <Label Text="31 关注" />
-                            <Label Text="7 粉丝" />
-                            <Label Text="Lv.9" />
+                        <Grid ColumnDefinitions="*,Auto,Auto" HeightRequest="32">
+                            <Label
+                                Text="收藏歌单(13个)"
+                                TextColor="{StaticResource Gray300}"
+                                VerticalOptions="Center" />
+                            <ImageButton
+                                Grid.Column="1"
+                                HeightRequest="26"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Color={StaticResource Gray100},
+                                                   Glyph={x:Static models:IconFontIcons.Add}}" />
+                            <ImageButton
+                                Grid.Column="2"
+                                HeightRequest="22"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Color={StaticResource Gray100},
+                                                   Glyph={x:Static models:IconFontIcons.More_android_light}}" />
+                        </Grid>
+                        <StackLayout Margin="0,8,0,0" BindableLayout.ItemsSource="{Binding Playlists}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Playlist}">
+                                    <Grid
+                                        ColumnDefinitions="Auto,*,Auto"
+                                        ColumnSpacing="8"
+                                        RowDefinitions="*,*"
+                                        RowSpacing="4">
+                                        <toolkit:AvatarView
+                                            Grid.RowSpan="2"
+                                            CornerRadius="8"
+                                            HeightRequest="60"
+                                            ImageSource="{Binding PicUrl}"
+                                            WidthRequest="60" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="End" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="12"
+                                            Text="{Binding SongCount, StringFormat='{0}首'}"
+                                            TextColor="{StaticResource Gray300}"
+                                            VerticalOptions="Start" />
+
+                                        <ImageButton
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            HeightRequest="22"
+                                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                               Color={StaticResource Gray100},
+                                                               Glyph={x:Static models:IconFontIcons.More_android_light}}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </StackLayout>
-                </Grid>
-                <Grid Margin="16,8">
-                    <Frame
-                        Margin="0,40,0,0"
-                        BackgroundColor="White"
-                        BorderColor="Transparent"
-                        HeightRequest="120"
-                        VerticalOptions="Start" />
-                    <StackLayout>
-                        <toolkit:AvatarView
-                            Margin="0,0,0,8"
-                            CornerRadius="40"
-                            HeightRequest="80"
-                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
-                            WidthRequest="80" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="大hentai_loli控"
-                            VerticalOptions="Center" />
-                        <StackLayout
-                            Margin="0,8"
-                            HorizontalOptions="Center"
-                            Orientation="Horizontal"
-                            Spacing="16">
-                            <StackLayout.Resources>
-                                <Style TargetType="Label">
-                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
-                                </Style>
-                            </StackLayout.Resources>
-                            <Label Text="31 关注" />
-                            <Label Text="7 粉丝" />
-                            <Label Text="Lv.9" />
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-                <Grid Margin="16,8">
-                    <Frame
-                        Margin="0,40,0,0"
-                        BackgroundColor="White"
-                        BorderColor="Transparent"
-                        HeightRequest="120"
-                        VerticalOptions="Start" />
-                    <StackLayout>
-                        <toolkit:AvatarView
-                            Margin="0,0,0,8"
-                            CornerRadius="40"
-                            HeightRequest="80"
-                            ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
-                            WidthRequest="80" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="大hentai_loli控"
-                            VerticalOptions="Center" />
-                        <StackLayout
-                            Margin="0,8"
-                            HorizontalOptions="Center"
-                            Orientation="Horizontal"
-                            Spacing="16">
-                            <StackLayout.Resources>
-                                <Style TargetType="Label">
-                                    <Setter Property="TextColor" Value="{StaticResource Gray300}" />
-                                </Style>
-                            </StackLayout.Resources>
-                            <Label Text="31 关注" />
-                            <Label Text="7 粉丝" />
-                            <Label Text="Lv.9" />
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </Grid>

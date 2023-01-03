@@ -2,7 +2,10 @@
 
 using Microsoft.Extensions.Logging;
 
+using Mopups.Hosting;
+
 using QianShiMusicClient.Maui.Models;
+using QianShiMusicClient.Maui.Services;
 using QianShiMusicClient.Maui.ViewModels;
 using QianShiMusicClient.Maui.Views;
 
@@ -22,6 +25,10 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("iconfont.ttf", IconFontIcons.FontFamily);
             })
+            .ConfigureMopups(() =>
+            {
+
+            })
             .Services.ConfigureService();
 
 #if DEBUG
@@ -37,6 +44,8 @@ public static class MauiProgram
 
         services.AddSingleton<FoundView, FoundViewModel>();
         services.AddSingleton<HomeView, HomeViewModel>();
+
+        services.AddSingleton<IPopupService, PopupService>();
 
         //services.AddTransientWithShellRoute<MessageDetailPage, MessageDetailViewModel>(nameof(MessageDetailPage));
         return services;
