@@ -52,8 +52,8 @@ public static class MauiProgram
         services.AddSingleton<LoginSelectionPage, LoginSelectionViewModel>();
         services.AddSingleton<INavigationService, NavigationService>();
 
-        services.AddTransient<LoginByEmailPage>();
-        services.AddTransient<LoginByPhonePage>();
+        services.AddTransient<LoginByEmailPage, LoginByEmailViewModel>();
+        services.AddTransient<LoginByPhonePage, LoginByPhoneViewModel>();
         services.AddTransient<ILoginService, LoginService>();
 
         //services.AddTransientWithShellRoute<MessageDetailPage, MessageDetailViewModel>(nameof(MessageDetailPage));
