@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 
 using Mopups.Hosting;
 
+using NeteaseCloudMusicApi;
+
 using QianShiMusicClient.Maui.Models;
 using QianShiMusicClient.Maui.Services;
 using QianShiMusicClient.Maui.ViewModels;
@@ -55,6 +57,10 @@ public static class MauiProgram
         services.AddTransient<LoginByEmailPage, LoginByEmailViewModel>();
         services.AddTransient<LoginByPhonePage, LoginByPhoneViewModel>();
         services.AddTransient<ILoginService, LoginService>();
+
+        var cookieStr = Preferences.Get("cookie", string.Empty);
+        ApiClient.Init("https://www.kuriyama.top/music-api", cookieStr);
+        services.AddSingleton(ApiClient.Current);
 
         //services.AddTransientWithShellRoute<MessageDetailPage, MessageDetailViewModel>(nameof(MessageDetailPage));
         return services;

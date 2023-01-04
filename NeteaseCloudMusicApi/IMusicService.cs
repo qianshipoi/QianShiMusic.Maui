@@ -8,6 +8,9 @@ public interface IMusicService
     [Post("/login/cellphone")]
     Task<LoginResponse> LoginCellphone([Body(BodySerializationMethod.UrlEncoded)] LoginCellphoneRequest request);
 
+    [Post("/login")]
+    Task<LoginResponse> Login([Body(BodySerializationMethod.UrlEncoded)] LoginRequest request);
+
     [Get("/artist/album")]
     Task<ArtistAlbumResponse> ArtistAlbum(ArtistAlbumRequest request);
 

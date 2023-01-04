@@ -1,9 +1,13 @@
 ﻿namespace NeteaseCloudMusicApi;
 
-public class ApiClient
+public static class ApiClient
 {
+    static bool isInit = false;
+
     public static string? BaseUrl { get; private set; }
+
     public static CookieContainer? CookieContainer { get; private set; }
+
 
     private static Lazy<IMusicService> instance = new Lazy<IMusicService>(() =>
     {
@@ -16,8 +20,6 @@ public class ApiClient
 
     public static IMusicService Current => instance.Value;
 
-    private ApiClient() { }
-
     public static string GetCookieString()
     {
         return JsonSerializer.Serialize(CookieContainer?.GetAllCookies().Select(x => new CookieInfo(x)));
@@ -25,6 +27,9 @@ public class ApiClient
 
     public static void Init(string baseUrl, string? cookieStr = null)
     {
+        if (isInit) return;
+        isInit = true;
+
         BaseUrl = baseUrl;
         CookieContainer = new CookieContainer();
         if (!string.IsNullOrWhiteSpace(cookieStr))
