@@ -42,19 +42,19 @@ public class LoginService : ILoginService
 
     public async Task<bool> PhonePwdLoginAsync(string phoneNumber, string password, CancellationToken cancellationToken = default)
     {
-        var response = await _musicService.LoginCellphone(new LoginCellphoneRequest(phoneNumber) { Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks });
+        var response = await _musicService.LoginCellphone(new LoginCellphoneRequest(phoneNumber) { Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks }, cancellationToken);
         return await HandleLoginAsync(response);
     }
 
     public async Task<bool> PhoneCaptchaLoginAsync(string phoneNumber, string captcha, CancellationToken cancellationToken = default)
     {
-        var response = await _musicService.LoginCellphone(new LoginCellphoneRequest(phoneNumber) { Captcha = captcha, Time = DateTime.Now.Ticks });
+        var response = await _musicService.LoginCellphone(new LoginCellphoneRequest(phoneNumber) { Captcha = captcha, Time = DateTime.Now.Ticks }, cancellationToken);
         return await HandleLoginAsync(response);
     }
 
     public async Task<bool> EmailLoginAsync(string email, string password, CancellationToken cancellationToken = default)
     {
-        var response = await _musicService.Login(new LoginRequest(email) { Md5Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks });
+        var response = await _musicService.Login(new LoginRequest(email) { Md5Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks }, cancellationToken);
         return await HandleLoginAsync(response);
     }
 }
