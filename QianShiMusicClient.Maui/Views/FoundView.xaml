@@ -36,12 +36,13 @@
                 VerticalOptions="Center"
                 WidthRequest="24" />
         </Grid>
-        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-            <RefreshView
-                Command="{Binding UpdateDataCommand}"
-                IsRefreshing="{Binding IsBusy}"
-                RefreshColor="{StaticResource Primary}">
-                <StackLayout>
+        <RefreshView
+            Grid.Row="1"
+            Command="{Binding UpdateDataCommand}"
+            IsRefreshing="{Binding IsBusy}"
+            RefreshColor="{StaticResource Primary}">
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <VerticalStackLayout>
                     <Grid HeightRequest="160" VerticalOptions="Start">
                         <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding Carousels}">
                             <CarouselView.ItemTemplate>
@@ -286,8 +287,8 @@
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </ScrollView>
-                </StackLayout>
-            </RefreshView>
-        </ScrollView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
     </Grid>
 </ContentView>

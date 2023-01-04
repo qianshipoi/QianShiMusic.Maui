@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using Mopups.Hosting;
@@ -13,6 +14,8 @@ using QianShiMusicClient.Maui.ViewModels.Login;
 using QianShiMusicClient.Maui.Views;
 using QianShiMusicClient.Maui.Views.Login;
 
+using SkiaSharp.Views.Maui.Controls.Hosting;
+
 namespace QianShiMusicClient.Maui;
 
 public static class MauiProgram
@@ -23,6 +26,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .UseSkiaSharp()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -58,9 +62,13 @@ public static class MauiProgram
         services.AddTransient<LoginByPhonePage, LoginByPhoneViewModel>();
         services.AddTransient<ILoginService, LoginService>();
 
-        var cookieStr = Preferences.Get("cookie", string.Empty);
-        ApiClient.Init("https://www.kuriyama.top/music-api", cookieStr);
-        services.AddSingleton(ApiClient.Current);
+        services.AddSingleton<SplashScreenPage>();
+        services.AddSingleton(typeof(IMusicService), (serviceProvider) =>
+        {
+            var cookieStr = Preferences.Get("cookie", string.Empty);
+            ApiClient.Init("https://www.kuriyama.top/music-api", cookieStr);
+            return ApiClient.Current;
+        });
 
         //services.AddTransientWithShellRoute<MessageDetailPage, MessageDetailViewModel>(nameof(MessageDetailPage));
         return services;

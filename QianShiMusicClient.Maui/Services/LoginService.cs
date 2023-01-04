@@ -30,7 +30,7 @@ public class LoginService : ILoginService
         }
         if (response.Code != 200)
         {
-            await Toast.Make(response.Msg!).Show();
+            await Toast.Make(response.Msg ?? "账号或密码错误").Show();
             return false;
         }
 
@@ -42,7 +42,7 @@ public class LoginService : ILoginService
 
     public async Task<bool> PhonePwdLoginAsync(string phoneNumber, string password, CancellationToken cancellationToken = default)
     {
-        var response = await _musicService.LoginCellphone(new LoginCellphoneRequest(phoneNumber) { Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks }, cancellationToken);
+        var response = await _musicService.LoginCellphone(new LoginCellphoneRequest(phoneNumber) { Md5Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks }, cancellationToken);
         return await HandleLoginAsync(response);
     }
 
@@ -56,5 +56,18 @@ public class LoginService : ILoginService
     {
         var response = await _musicService.Login(new LoginRequest(email) { Md5Password = password.ToMd5().ToLower(), Time = DateTime.Now.Ticks }, cancellationToken);
         return await HandleLoginAsync(response);
+    }
+
+    public async Task<bool> LoginStatus(CancellationToken cancellationToken = default)
+    {
+        var response = await _musicService.LoginStatus(new BaseRequest() { Time = DateTime.Now.Ticks }, cancellationToken);
+        if (response.Data.Profile is null)
+        {
+            await Toast.Make("登录已过期").Show();
+            return false;
+        }
+
+        IsLoggedIn = true;
+        return true;
     }
 }

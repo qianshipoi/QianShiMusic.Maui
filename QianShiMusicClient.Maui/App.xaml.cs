@@ -10,6 +10,7 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-        MainPage = new NavigationPage(ServiceHelper.GetRequiredService<LoginSelectionPage>()); //  serviceProvider.GetRequiredService<AppShell>();
+        //MainPage = ServiceHelper.GetRequiredService<AppShell>();
+        MainPage = ServiceHelper.GetRequiredService<SplashScreenPage>();
     }
 }

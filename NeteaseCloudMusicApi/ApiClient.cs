@@ -8,7 +8,6 @@ public static class ApiClient
 
     public static CookieContainer? CookieContainer { get; private set; }
 
-
     private static Lazy<IMusicService> instance = new Lazy<IMusicService>(() =>
     {
         var handler = new HttpClientHandler();

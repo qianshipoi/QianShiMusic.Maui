@@ -72,7 +72,8 @@
                         FontSize="22"
                         Keyboard="Telephone"
                         MaxLength="11"
-                        Placeholder="请输入手机号" />
+                        Placeholder="请输入手机号"
+                        Text="{Binding Phone}" />
                     <Button
                         Margin="0,32,0,0"
                         Command="{Binding NextCommand}"
@@ -120,9 +121,13 @@
                     </Label>
                 </VerticalStackLayout>
                 <VerticalStackLayout toolkit:StateView.StateKey="password">
-                    <Entry Keyboard="Default" Placeholder="请输入密码" />
+                    <Entry
+                        Keyboard="Default"
+                        Placeholder="请输入密码"
+                        Text="{Binding Password}" />
                     <Button
                         Margin="0,32,0,0"
+                        Command="{Binding PasswordLoginSubmitCommand}"
                         CornerRadius="24"
                         FontSize="18"
                         Text="登录" />
