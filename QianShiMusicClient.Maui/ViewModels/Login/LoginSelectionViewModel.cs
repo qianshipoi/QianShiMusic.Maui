@@ -9,7 +9,6 @@ namespace QianShiMusicClient.Maui.ViewModels.Login;
 
 public sealed partial class LoginSelectionViewModel : ViewModelBase
 {
-
     private readonly INavigationService _navigationService;
     public LoginSelectionViewModel()
     {
