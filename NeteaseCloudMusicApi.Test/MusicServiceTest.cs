@@ -55,5 +55,14 @@ namespace NeteaseCloudMusicApi.Test
             Assert.NotNull(response.Data.Account);
             Assert.NotNull(response.Data.Profile);
         }
+
+        [Fact]
+        public async Task CallBanner()
+        {
+            var response = await _musicService.Banner(new Requests.BannerRequest(1) { Time = DateTime.Now.Ticks });
+
+            Assert.Equal(200, response.Code);
+            Assert.NotEmpty(response.Banners);
+        }
     }
 }

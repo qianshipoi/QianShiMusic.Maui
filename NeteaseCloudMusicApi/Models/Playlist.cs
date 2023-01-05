@@ -15,6 +15,7 @@ public class Playlist
     public string CoverImgUrl { get; set; } = null!;
     public long CoverImgId { get; set; }
     public string? AliasAs { get; set; }
+    public string? Description { get; set; }
     public List<string>? Tags { get; set; }
     public long PlayCount { get; set; }
     public long TrackUpdateTime { get; set; }

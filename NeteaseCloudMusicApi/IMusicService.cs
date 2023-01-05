@@ -2,6 +2,9 @@
 
 public interface IMusicService
 {
+    [Get("/banner")]
+    Task<BannerResponse> Banner(BannerRequest request, CancellationToken cancellationToken = default);
+
     [Get("/personalized")]
     Task<PersonalizedResponse> Personalized(PersonalizedRequest? request = null, CancellationToken cancellationToken = default);
 
