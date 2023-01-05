@@ -34,7 +34,6 @@ public partial class SplashScreenPage : ContentPage
         var cookieStr = Preferences.Get("cookie", string.Empty);
         if (string.IsNullOrEmpty(cookieStr))
         {
-            // Î´µÇÂ¼
             GoToLoginPage();
             return;
         }
@@ -46,7 +45,6 @@ public partial class SplashScreenPage : ContentPage
             return;
         }
 
-        // ÒÑµÇÂ¼
         MainThread.BeginInvokeOnMainThread(() =>
         {
             App.Current.MainPage = ServiceHelper.GetRequiredService<AppShell>();

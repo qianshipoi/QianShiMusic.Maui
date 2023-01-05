@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="QianShiMusicClient.Maui.Controls.MenuContent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    x:DataType="{x:Type vms:MenuViewModel}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="MenuDataTemplate">
+                <ViewCell x:DataType="{x:Type models:Menu}">
+                    <Grid
+                        Padding="16,0"
+                        ColumnDefinitions="Auto,*,Auto,Auto"
+                        ColumnSpacing="8">
+                        <Label
+                            Margin="0,0,8,0"
+                            FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                            Text="{Binding Icon}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="14"
+                            Text="{Binding Name}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="2"
+                            FontSize="12"
+                            Text="{Binding Tag}"
+                            TextColor="{StaticResource Gray300}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="3"
+                            FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                            Text="{x:Static models:IconFontIcons.ArrowRight}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <Style TargetType="Frame">
+                <Setter Property="BorderColor" Value="Transparent" />
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+                <Setter Property="SelectionMode" Value="None" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowDefinitions="Auto,*">
+        <!--  header  -->
+        <Grid
+            Margin="16"
+            ColumnDefinitions="Auto,*,Auto"
+            ColumnSpacing="8">
+            <toolkit:AvatarView
+                HeightRequest="32"
+                HorizontalOptions="Center"
+                ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                WidthRequest="32" />
+            <StackLayout
+                Grid.Column="1"
+                Orientation="Horizontal"
+                Spacing="4">
+                <Label Text="大hentai_loli控" VerticalOptions="Center" />
+                <Label
+                    FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                    Text="{x:Static models:IconFontIcons.ArrowRight}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <ImageButton
+                Grid.Column="2"
+                HeightRequest="24"
+                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                   Color={StaticResource Gray900},
+                                   Glyph={x:Static models:IconFontIcons.Scanning}}"
+                VerticalOptions="Center"
+                WidthRequest="24" />
+        </Grid>
+        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout
+                x:Name="MainContainer"
+                Padding="16"
+                BackgroundColor="#F5F5F5"
+                Spacing="16">
+                <VerticalStackLayout.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#FFFFFF" />
+                        <GradientStop Offset="0.1" Color="#F5F5F5" />
+                        <GradientStop Offset="1.0" Color="#F5F5F5" />
+                    </LinearGradientBrush>
+                </VerticalStackLayout.Background>
+                <!--  member  -->
+                <Frame Padding="16" CornerRadius="16">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Offset="0.1" Color="#3C3837" />
+                            <GradientStop Offset="1.0" Color="#5F4F4F" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <StackLayout>
+                        <Grid ColumnDefinitions="*,Auto" HeightRequest="24">
+                            <StackLayout Orientation="Horizontal" Spacing="4">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="22"
+                                    Text="黑胶VIP·伍"
+                                    TextColor="#FDE2DF"
+                                    VerticalOptions="Center" />
+                                <ProgressBar Progress="0.5" ProgressColor="#E3C3BC" />
+                                <Label
+                                    FontSize="14"
+                                    Text="V6"
+                                    TextColor="#857673"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                            <Button
+                                Grid.Column="1"
+                                Padding="8,0"
+                                BackgroundColor="Transparent"
+                                BorderColor="#D5BFBB"
+                                BorderWidth="1"
+                                CornerRadius="12"
+                                FontSize="12"
+                                HeightRequest="24"
+                                Text="会员中心"
+                                TextColor="#D5BFBB"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <StackLayout
+                            Margin="0,4"
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <Label
+                                Text="有14成长值待领取"
+                                TextColor="#D5BFBB"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                Text="{x:Static models:IconFontIcons.ArrowRight}"
+                                TextColor="#D5BFBB"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                        <Border
+                            Margin="0,8"
+                            Background="#58504E"
+                            HeightRequest="1" />
+                        <Grid ColumnDefinitions="*,Auto" HeightRequest="32">
+                            <Label
+                                Text="点击升级SVIP，尽享尊贵千元特权！"
+                                TextColor="#D5BFBB"
+                                VerticalOptions="Center" />
+                            <toolkit:AvatarView
+                                Grid.Column="1"
+                                CornerRadius="4"
+                                HeightRequest="32"
+                                HorizontalOptions="Center"
+                                ImageSource="https://chat.kuriyama.top/Raw/DefaultAvatar/1.jpg"
+                                WidthRequest="32" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <!--  menu  -->
+                <Frame Padding="0" CornerRadius="8">
+                    <ListView
+                        Margin="0,0,0,-2"
+                        ItemTemplate="{StaticResource MenuDataTemplate}"
+                        ItemsSource="{Binding Menus}"
+                        SeparatorColor="{Binding Source={x:Reference MainContainer}, Path=BackgroundColor}" />
+                </Frame>
+
+                <!--  music service  -->
+                <Frame Padding="0" CornerRadius="16">
+                    <StackLayout>
+                        <Label
+                            Margin="16"
+                            FontSize="12"
+                            Text="音乐服务"
+                            TextColor="{StaticResource Gray300}" />
+                        <Border BackgroundColor="{Binding Source={x:Reference MainContainer}, Path=BackgroundColor}" HeightRequest="1" />
+                        <ListView
+                            ItemTemplate="{StaticResource MenuDataTemplate}"
+                            ItemsSource="{Binding MusicServices}"
+                            SeparatorVisibility="None" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  other  -->
+                <Frame Padding="0" CornerRadius="16">
+                    <StackLayout>
+                        <Label
+                            Margin="16"
+                            FontSize="12"
+                            Text="其他"
+                            TextColor="{StaticResource Gray300}" />
+                        <Border BackgroundColor="{Binding Source={x:Reference MainContainer}, Path=BackgroundColor}" HeightRequest="1" />
+                        <ListView
+                            ItemTemplate="{StaticResource MenuDataTemplate}"
+                            ItemsSource="{Binding Others}"
+                            SeparatorVisibility="None" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  detailed  -->
+                <Frame Padding="0" CornerRadius="16">
+                    <ListView
+                        ItemTemplate="{StaticResource MenuDataTemplate}"
+                        ItemsSource="{Binding Detailed}"
+                        SeparatorVisibility="None" />
+                </Frame>
+
+                <!--  logout  -->
+                <Button
+                    BackgroundColor="White"
+                    Text="退出登录/关闭"
+                    TextColor="{StaticResource Primary}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

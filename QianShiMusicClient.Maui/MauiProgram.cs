@@ -61,6 +61,7 @@ public static class MauiProgram
         services.AddTransient<LoginByEmailPage, LoginByEmailViewModel>();
         services.AddTransient<LoginByPhonePage, LoginByPhoneViewModel>();
         services.AddTransient<ILoginService, LoginService>();
+        services.AddSingleton<MenuViewModel>();
 
         services.AddSingleton<SplashScreenPage>();
         services.AddSingleton(typeof(IMusicService), (serviceProvider) =>

@@ -8,6 +8,47 @@
     xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
     x:DataType="{x:Type vms:HomeViewModel}"
     BackgroundColor="#F0EFED">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="PlaylistDataTemplate">
+                <ViewCell x:DataType="{x:Type models:Playlist}">
+                    <Grid
+                        Padding="16,0,8,0"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="8"
+                        RowDefinitions="*,*"
+                        RowSpacing="4">
+                        <toolkit:AvatarView
+                            Grid.RowSpan="2"
+                            CornerRadius="8"
+                            HeightRequest="60"
+                            ImageSource="{Binding PicUrl}"
+                            WidthRequest="60" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            LineBreakMode="TailTruncation"
+                            Text="{Binding Name}"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="12"
+                            Text="{Binding SongCount, StringFormat='{0}首'}"
+                            TextColor="{StaticResource Gray300}"
+                            VerticalOptions="Start" />
+                        <ImageButton
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            HeightRequest="22"
+                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                               Color={StaticResource Gray100},
+                                               Glyph={x:Static models:IconFontIcons.More_android_light}}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
     <Grid>
         <Grid
             x:Name="HeaderControl"
@@ -193,10 +234,13 @@
                 </Frame>
                 <Frame
                     Margin="16,8"
-                    Padding="16,16,8,16"
+                    Padding="0,16,0,16"
                     BorderColor="Transparent">
                     <StackLayout>
-                        <Grid ColumnDefinitions="*,Auto,Auto" HeightRequest="32">
+                        <Grid
+                            Margin="16,0,8,0"
+                            ColumnDefinitions="*,Auto,Auto"
+                            HeightRequest="32">
                             <Label
                                 Text="创建歌单(13个)"
                                 TextColor="{StaticResource Gray300}"
@@ -215,53 +259,25 @@
                                                    Color={StaticResource Gray100},
                                                    Glyph={x:Static models:IconFontIcons.More_android_light}}" />
                         </Grid>
-                        <StackLayout Margin="0,8,0,0" BindableLayout.ItemsSource="{Binding Playlists}">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate x:DataType="{x:Type models:Playlist}">
-                                    <Grid
-                                        ColumnDefinitions="Auto,*,Auto"
-                                        ColumnSpacing="8"
-                                        RowDefinitions="*,*"
-                                        RowSpacing="4">
-                                        <toolkit:AvatarView
-                                            Grid.RowSpan="2"
-                                            CornerRadius="8"
-                                            HeightRequest="60"
-                                            ImageSource="{Binding PicUrl}"
-                                            WidthRequest="60" />
-                                        <Label
-                                            Grid.Column="1"
-                                            FontAttributes="Bold"
-                                            LineBreakMode="TailTruncation"
-                                            Text="{Binding Name}"
-                                            VerticalOptions="End" />
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            FontSize="12"
-                                            Text="{Binding SongCount, StringFormat='{0}首'}"
-                                            TextColor="{StaticResource Gray300}"
-                                            VerticalOptions="Start" />
-
-                                        <ImageButton
-                                            Grid.RowSpan="2"
-                                            Grid.Column="2"
-                                            HeightRequest="22"
-                                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
-                                                               Color={StaticResource Gray100},
-                                                               Glyph={x:Static models:IconFontIcons.More_android_light}}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
+                        <ListView
+                            Margin="0,8,0,0"
+                            ItemTemplate="{StaticResource PlaylistDataTemplate}"
+                            ItemsSource="{Binding Playlists}"
+                            RowHeight="68"
+                            SelectionMode="None"
+                            SeparatorVisibility="None"
+                            VerticalScrollBarVisibility="Never" />
                     </StackLayout>
                 </Frame>
                 <Frame
                     Margin="16,8"
-                    Padding="16,16,8,16"
+                    Padding="0,16"
                     BorderColor="Transparent">
                     <StackLayout>
-                        <Grid ColumnDefinitions="*,Auto,Auto" HeightRequest="32">
+                        <Grid
+                            Margin="16,0,8,0"
+                            ColumnDefinitions="*,Auto,Auto"
+                            HeightRequest="32">
                             <Label
                                 Text="收藏歌单(13个)"
                                 TextColor="{StaticResource Gray300}"
@@ -279,45 +295,14 @@
                                                    Color={StaticResource Gray100},
                                                    Glyph={x:Static models:IconFontIcons.More_android_light}}" />
                         </Grid>
-                        <StackLayout Margin="0,8,0,0" BindableLayout.ItemsSource="{Binding Playlists}">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate x:DataType="{x:Type models:Playlist}">
-                                    <Grid
-                                        ColumnDefinitions="Auto,*,Auto"
-                                        ColumnSpacing="8"
-                                        RowDefinitions="*,*"
-                                        RowSpacing="4">
-                                        <toolkit:AvatarView
-                                            Grid.RowSpan="2"
-                                            CornerRadius="8"
-                                            HeightRequest="60"
-                                            ImageSource="{Binding PicUrl}"
-                                            WidthRequest="60" />
-                                        <Label
-                                            Grid.Column="1"
-                                            FontAttributes="Bold"
-                                            LineBreakMode="TailTruncation"
-                                            Text="{Binding Name}"
-                                            VerticalOptions="End" />
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            FontSize="12"
-                                            Text="{Binding SongCount, StringFormat='{0}首'}"
-                                            TextColor="{StaticResource Gray300}"
-                                            VerticalOptions="Start" />
-
-                                        <ImageButton
-                                            Grid.RowSpan="2"
-                                            Grid.Column="2"
-                                            HeightRequest="22"
-                                            Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
-                                                               Color={StaticResource Gray100},
-                                                               Glyph={x:Static models:IconFontIcons.More_android_light}}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
+                        <ListView
+                            Margin="0,8,0,0"
+                            ItemTemplate="{StaticResource PlaylistDataTemplate}"
+                            ItemsSource="{Binding Playlists}"
+                            RowHeight="68"
+                            SelectionMode="None"
+                            SeparatorVisibility="None"
+                            VerticalScrollBarVisibility="Never" />
                     </StackLayout>
                 </Frame>
             </StackLayout>

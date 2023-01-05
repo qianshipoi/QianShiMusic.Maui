@@ -9,6 +9,9 @@
     Title="MainPage"
     x:DataType="{x:Type vms:MainViewModel}"
     Shell.NavBarIsVisible="False">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
     <Grid RowDefinitions="*,Auto">
         <Grid BackgroundColor="{StaticResource Gray100}">
             <Frame
