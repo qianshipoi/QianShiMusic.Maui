@@ -2,8 +2,6 @@
 
 public class SearchHotDetailResponse : BaseResponse
 {
-    public string Message { get; set; } = default!;
-
     [JsonPropertyName("data")]
     public Data Result { get; set; } = new();
 

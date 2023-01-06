@@ -90,9 +90,9 @@
                     <Label FontSize="20" Text="登录体验更多精彩" />
                     <Grid Margin="0,8,0,0" ColumnDefinitions="*,Auto">
                         <Label Text="{Binding Phone, StringFormat='已发送至+86 {0}'}" TextColor="{StaticResource Gray300}" />
-                        <StackLayout HorizontalOptions="End">
+                        <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ResendCommand}" />
+                                <TapGestureRecognizer Command="{Binding ResentCommand}" />
                             </StackLayout.GestureRecognizers>
                             <Label Text="重新发送" />
                             <Label Text="{Binding Countdown, StringFormat='{0}s'}">
@@ -110,7 +110,14 @@
                     <Entry
                         Margin="0,20"
                         Keyboard="Numeric"
-                        MaxLength="6" />
+                        MaxLength="6"
+                        Text="{Binding Captcha}" />
+                    <Button
+                        Margin="0,0,0,16"
+                        Command="{Binding CaptchaLoginSubmitCommand}"
+                        CornerRadius="24"
+                        FontSize="18"
+                        Text="登录" />
                     <Label HorizontalOptions="Center" TextColor="{StaticResource Gray300}">
                         <Label.FormattedText>
                             <FormattedString>

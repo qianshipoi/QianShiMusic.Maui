@@ -8,19 +8,19 @@ using System.Collections.ObjectModel;
 
 namespace QianShiMusicClient.Maui.ViewModels;
 
-public sealed partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase
 {
     IServiceProvider _serviceProvider;
 
     [ObservableProperty]
-    View _currentView;
+    View? _currentView;
 
     public ObservableCollection<TabBarItem> TabBarItems { get; private set; }
 
     public MainViewModel(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
-        CurrentView = _serviceProvider.GetRequiredService<FoundView>();
+        _currentView = _serviceProvider.GetRequiredService<FoundView>();
         TabBarItems = new ObservableCollection<TabBarItem>
     {
         new TabBarItem("发现",IconFontIcons.Faxian,true,typeof(FoundView)),
@@ -33,10 +33,10 @@ public sealed partial class MainViewModel : ViewModelBase
     void Join(TabBarItem item)
     {
         if (item.IsSelected) return;
-        TabBarItems.FirstOrDefault(x => x.IsSelected).IsSelected = false;
+        TabBarItems.First(x => x.IsSelected).IsSelected = false;
         item.IsSelected = true;
-        CurrentView.Parent = null;
+        CurrentView!.Parent = null;
         CurrentView = null;
-        CurrentView = _serviceProvider.GetRequiredService(item.ViewType) as View;
+        CurrentView = (View)_serviceProvider.GetRequiredService(item.ViewType);
     }
 }

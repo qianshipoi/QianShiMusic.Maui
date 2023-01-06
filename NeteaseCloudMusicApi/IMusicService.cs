@@ -37,4 +37,10 @@ public interface IMusicService
 
     [Get("/user/detail")]
     Task<UserDetailResponse> UserDetail(UserDetailRequest request, CancellationToken cancellationToken = default);
+
+    [Get("/captcha/sent")]
+    Task<CaptchaSentResponse> CaptchaSent(CaptchaSentRequest request, CancellationToken cancellationToken = default);
+
+    [Get("/logout")]
+    Task<BaseResponse> Logout(BaseRequest? request = null, CancellationToken cancellationToken = default);
 }

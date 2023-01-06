@@ -13,7 +13,7 @@ public partial class HomeView : ContentView
         MainControl.Scrolled += MainControl_Scrolled;
     }
 
-    private void MainControl_Scrolled(object sender, ScrolledEventArgs e)
+    private void MainControl_Scrolled(object? sender, ScrolledEventArgs e)
     {
         // 170
         var alpha = (float)e.ScrollY / 160 * 255;

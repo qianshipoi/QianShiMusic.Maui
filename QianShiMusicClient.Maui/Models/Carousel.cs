@@ -18,9 +18,9 @@ public class MoreOption
 
     public string Icon { get; set; }
 
-    public ICommand Command { get; set; }
+    public ICommand? Command { get; set; }
 
-    public object CommandParameter { get; set; }
+    public object? CommandParameter { get; set; }
 
     public bool ClostAfterExecution { get; set; } = true;
 
@@ -28,7 +28,7 @@ public class MoreOption
     {
         Name = name;
         Icon = icon;
-        if(CommandParameter == null)
+        if (CommandParameter == null)
         {
             CommandParameter = this;
         }
@@ -42,7 +42,9 @@ public partial class TabBarItem : ObservableObject
 
     [ObservableProperty]
     private bool _isSelected;
+
     public Type ViewType { get; set; }
+
     public TabBarItem(string name, string icon, bool isSelected, Type viewType)
     {
         Name = name;

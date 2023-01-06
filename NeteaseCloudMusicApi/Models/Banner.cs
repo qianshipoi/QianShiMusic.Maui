@@ -38,6 +38,6 @@ public class Banner
 
     [JsonPropertyName("s_ctrp")]
     public string SCtrp { get; set; } = null!;
-    public object LogContext { get; set; }
+    public object? LogContext { get; set; }
     public string BannerBizType { get; set; } = null!;
 }

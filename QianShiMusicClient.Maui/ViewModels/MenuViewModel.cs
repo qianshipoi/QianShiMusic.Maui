@@ -1,9 +1,15 @@
-﻿using QianShiMusicClient.Maui.Models;
+﻿using CommunityToolkit.Mvvm.Input;
+
+using QianShiMusicClient.Maui.Models;
+using QianShiMusicClient.Maui.Services;
+using QianShiMusicClient.Maui.Views;
 
 namespace QianShiMusicClient.Maui.ViewModels;
 
 public partial class MenuViewModel : ViewModelBase
 {
+    readonly ILoginService _loginService;
+
     public List<Menu> Menus { get; private set; }
 
     public List<Menu> MusicServices { get; private set; }
@@ -12,7 +18,7 @@ public partial class MenuViewModel : ViewModelBase
 
     public List<Menu> Detailed { get; private set; }
 
-    public MenuViewModel()
+    public MenuViewModel(ILoginService loginService)
     {
         Menus = new List<Menu>
         {
@@ -50,7 +56,30 @@ public partial class MenuViewModel : ViewModelBase
              new Menu("个人信息与隐私保护",IconFontIcons.Message),
              new Menu("关于",IconFontIcons.GameHandle)
         };
+        _loginService = loginService;
     }
 
+
+    [RelayCommand]
+    async Task Logout()
+    {
+        if (IsBusy) return;
+        IsBusy = true;
+
+        try
+        {
+            await _loginService.Logout();
+
+            // to login page;
+            App.Current.MainPage = new SplashScreenPage();
+        }
+        catch (Exception)
+        {
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
 }
 

@@ -214,6 +214,7 @@
                 <!--  logout  -->
                 <Button
                     BackgroundColor="White"
+                    Command="{Binding LogoutCommand}"
                     Text="退出登录/关闭"
                     TextColor="{StaticResource Primary}" />
             </VerticalStackLayout>

@@ -108,9 +108,18 @@ namespace NeteaseCloudMusicApi.Test
         [Fact]
         public async Task CallUserDetail()
         {
-            var response = await _musicService.UserDetail(new  Requests.UserDetailRequest(32953014));
+            var response = await _musicService.UserDetail(new Requests.UserDetailRequest(32953014));
 
             Assert.Equal(200, response.Code);
+        }
+
+        [Fact]
+        public async Task CallCaptchaSent()
+        {
+            var response = await _musicService.CaptchaSent(new Requests.CaptchaSentRequest("15926581437"));
+
+            Assert.Equal(200, response.Code);
+            Assert.True(response.Data);
         }
     }
 }
