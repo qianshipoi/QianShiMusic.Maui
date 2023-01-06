@@ -47,13 +47,19 @@ namespace NeteaseCloudMusicApi.Test
         [Fact]
         public async Task CallLoginStatus()
         {
-            var response = await _musicService.LoginStatus(new Requests.BaseRequest()
-            {
-                Time = DateTime.Now.Ticks
-            });
+            var response = await _musicService.LoginStatus(new Requests.BaseRequest(DateTime.Now.Ticks));
             Assert.Equal(200, response.Data.Code);
             Assert.NotNull(response.Data.Account);
             Assert.NotNull(response.Data.Profile);
+        }
+
+        [Fact]
+        public async Task CallUserAccount()
+        {
+            var response = await _musicService.UserAccount(new Requests.BaseRequest(DateTime.Now.Ticks));
+            Assert.Equal(200, response.Code);
+            Assert.NotNull(response.Account);
+            Assert.NotNull(response.Profile);
         }
 
         [Fact]
@@ -63,6 +69,48 @@ namespace NeteaseCloudMusicApi.Test
 
             Assert.Equal(200, response.Code);
             Assert.NotEmpty(response.Banners);
+        }
+
+        [Fact] 
+        public async Task CallUserLevel()
+        {
+            var response = await _musicService.UserLevel(new Requests.BaseRequest(DateTime.Now.Ticks));
+
+            Assert.Equal(200, response.Code);
+            Assert.NotNull(response.Data);
+        }
+
+        [Fact]
+        public async Task CallUserSubcount()
+        {
+            var response = await _musicService.UserSubcount(new Requests.BaseRequest(DateTime.Now.Ticks));
+
+            Assert.Equal(200, response.Code);
+        }
+
+        [Fact]
+        public async Task CallCountriesCodeList()
+        {
+            var response = await _musicService.CountriesCodeList(new Requests.BaseRequest(DateTime.Now.Ticks));
+
+            Assert.Equal(200, response.Code);
+            Assert.NotEmpty(response.Data);
+        }
+
+        [Fact]
+        public async Task CallUserPlaylsit()
+        {
+            var response = await _musicService.UserPlaylsit(new Requests.UserPlaylistRequest(32953014));
+
+            Assert.Equal(200, response.Code);
+        }
+
+        [Fact]
+        public async Task CallUserDetail()
+        {
+            var response = await _musicService.UserDetail(new  Requests.UserDetailRequest(32953014));
+
+            Assert.Equal(200, response.Code);
         }
     }
 }

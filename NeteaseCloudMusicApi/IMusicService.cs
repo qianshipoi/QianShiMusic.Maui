@@ -19,4 +19,22 @@ public interface IMusicService
 
     [Get("/login/status")]
     Task<LoginStatusResponse> LoginStatus(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/user/account")]
+    Task<UserAccountResponse> UserAccount(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/user/subcount")]
+    Task<UserSubcountResponse> UserSubcount(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/user/level")]
+    Task<UserLevelResponse> UserLevel(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/countries/code/list")]
+    Task<CountriesCodeListResponse> CountriesCodeList(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/user/playlist")]
+    Task<UserPlaylistResponse> UserPlaylsit(UserPlaylistRequest request, CancellationToken cancellationToken = default);
+
+    [Get("/user/detail")]
+    Task<UserDetailResponse> UserDetail(UserDetailRequest request, CancellationToken cancellationToken = default);
 }
