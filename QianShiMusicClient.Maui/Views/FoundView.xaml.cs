@@ -1,12 +1,17 @@
+using QianShiMusicClient.Maui.Helpers;
 using QianShiMusicClient.Maui.ViewModels;
 
 namespace QianShiMusicClient.Maui.Views;
 
 public partial class FoundView : ContentView
 {
-	public FoundView(FoundViewModel viewModel)
+	public FoundView()
 	{
 		InitializeComponent();
-		this.BindingContext = viewModel;
 	}
+
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+    }
 }

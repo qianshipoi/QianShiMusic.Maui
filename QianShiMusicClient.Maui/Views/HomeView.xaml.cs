@@ -1,15 +1,15 @@
 using CommunityToolkit.Maui.Extensions;
 
+using QianShiMusicClient.Maui.Helpers;
 using QianShiMusicClient.Maui.ViewModels;
 
 namespace QianShiMusicClient.Maui.Views;
 
 public partial class HomeView : ContentView
 {
-	public HomeView(HomeViewModel viewModel)
+	public HomeView()
 	{
 		InitializeComponent();
-		this.BindingContext = viewModel;
         MainControl.Scrolled += MainControl_Scrolled;
     }
 

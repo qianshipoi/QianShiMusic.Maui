@@ -14,6 +14,8 @@ using QianShiMusicClient.Maui.ViewModels.Login;
 using QianShiMusicClient.Maui.Views;
 using QianShiMusicClient.Maui.Views.Login;
 
+using Sharpnado.Tabs;
+
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace QianShiMusicClient.Maui;
@@ -27,6 +29,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseSkiaSharp()
+            .UseSharpnadoTabs(loggerEnable: false)
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -35,7 +38,6 @@ public static class MauiProgram
             })
             .ConfigureMopups(() =>
             {
-
             })
             .Services.ConfigureService();
 
