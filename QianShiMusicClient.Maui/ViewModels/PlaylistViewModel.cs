@@ -9,9 +9,7 @@ namespace QianShiMusicClient.Maui.ViewModels;
 public partial class PlaylistViewModel : ViewModelBase
 {
     [ObservableProperty]
-    Playlist _playlist;
-
-    public ObservableCollection<Song> Songs { get; private set; }
+    int _currentTypeIndex;
 
     public PlaylistViewModel()
     {

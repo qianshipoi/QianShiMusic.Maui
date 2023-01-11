@@ -3,11 +3,13 @@
     x:Class="QianShiMusicClient.Maui.Views.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:QianShiMusicClient.Maui.Helpers"
     xmlns:models="clr-namespace:QianShiMusicClient.Maui.Models"
     xmlns:tabs="http://sharpnado.com"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:QianShiMusicClient.Maui.Views"
     xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    x:Name="Root"
     Title="MainPage"
     x:DataType="{x:Type vms:MainViewModel}"
     Shell.NavBarIsVisible="False">
@@ -35,9 +37,38 @@
     </ContentPage.Resources>
     <Grid RowDefinitions="*,Auto">
         <Grid BackgroundColor="{StaticResource Gray100}">
-            <tabs:ViewSwitcher
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <DataTemplate x:Key="FoundDataTemplate">
+                        <tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">
+                            <views:FoundView />
+                        </tabs:DraggableViewCell>
+                    </DataTemplate>
+                    <DataTemplate x:Key="HomeDataTemplate">
+                        <tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">
+                            <views:HomeView />
+                            <!--<tabs:DelayedView
+                                x:TypeArguments="views:HomeView"
+                                AccentColor="{StaticResource Primary}"
+                                Animate="True"
+                                BindingContext="{Binding ViewModel}"
+                                UseActivityIndicator="True" />-->
+                        </tabs:DraggableViewCell>
+                    </DataTemplate>
+                    <helpers:MainTabDataTemplateSelector
+                        x:Key="BarSelector"
+                        FoundDataTemplate="{StaticResource FoundDataTemplate}"
+                        HomeDataTemplate="{StaticResource HomeDataTemplate}" />
+                </ResourceDictionary>
+            </Grid.Resources>
+            <tabs:CarouselView
+                AnimateScroll="True"
+                CurrentIndex="{Binding CurrentViewIndex, Mode=TwoWay}"
+                ItemTemplate="{StaticResource BarSelector}"
+                ItemsSource="{Binding Tabs}" />
+            <!--<tabs:ViewSwitcher
                 x:Name="Switcher"
-                Animate="True"
+                Animate="False"
                 SelectedIndex="{Binding CurrentViewIndex, Mode=TwoWay}">
                 <tabs:DelayedView
                     x:TypeArguments="views:FoundView"
@@ -51,7 +82,7 @@
                     Animate="True"
                     BindingContext="{Binding HomeViewModel}"
                     UseActivityIndicator="True" />
-            </tabs:ViewSwitcher>
+            </tabs:ViewSwitcher>-->
             <Grid
                 Padding="16,0"
                 BackgroundColor="White"
@@ -96,53 +127,27 @@
         <tabs:TabHostView
             Grid.Row="1"
             Margin="0"
-            tabs:TouchEffect.Color="Transparent"
             HeightRequest="48"
             ItemsSource="{Binding Tabs}"
             SelectedIndex="{Binding CurrentViewIndex, Mode=TwoWay}">
             <tabs:TabHostView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:TabBarItem">
                     <tabs:MaterialUnderlinedTabItem
+                        tabs:TouchEffect.Color="Transparent"
                         IconOptions="TopIcon"
                         IconTextSpacing="0"
-                        Label="{Binding}"
+                        Label="{Binding Name}"
                         Style="{StaticResource BottomTabStyle}"
                         UnderlineHeight="0">
                         <tabs:MaterialUnderlinedTabItem.IconImageSource>
                             <FontImageSource
                                 FontFamily="{x:Static models:IconFontIcons.FontFamily}"
-                                Glyph="{x:Static models:IconFontIcons.Faxian}"
+                                Glyph="{Binding Icon}"
                                 Color="{StaticResource Gray300}" />
                         </tabs:MaterialUnderlinedTabItem.IconImageSource>
                     </tabs:MaterialUnderlinedTabItem>
                 </DataTemplate>
             </tabs:TabHostView.ItemTemplate>
-            <!--<tabs:MaterialUnderlinedTabItem
-                IconOptions="TopIcon"
-                IconTextSpacing="0"
-                Label="发现"
-                Style="{StaticResource BottomTabStyle}"
-                UnderlineHeight="0">
-                <tabs:MaterialUnderlinedTabItem.IconImageSource>
-                    <FontImageSource
-                        FontFamily="{x:Static models:IconFontIcons.FontFamily}"
-                        Glyph="{x:Static models:IconFontIcons.Faxian}"
-                        Color="{StaticResource Gray300}" />
-                </tabs:MaterialUnderlinedTabItem.IconImageSource>
-            </tabs:MaterialUnderlinedTabItem>
-            <tabs:MaterialUnderlinedTabItem
-                IconOptions="TopIcon"
-                IconTextSpacing="0"
-                Label="我的"
-                Style="{StaticResource BottomTabStyle}"
-                UnderlineHeight="0">
-                <tabs:MaterialUnderlinedTabItem.IconImageSource>
-                    <FontImageSource
-                        FontFamily="{x:Static models:IconFontIcons.FontFamily}"
-                        Glyph="{x:Static models:IconFontIcons.Music}"
-                        Color="{StaticResource Gray300}" />
-                </tabs:MaterialUnderlinedTabItem.IconImageSource>
-            </tabs:MaterialUnderlinedTabItem>-->
         </tabs:TabHostView>
     </Grid>
 </ContentPage>

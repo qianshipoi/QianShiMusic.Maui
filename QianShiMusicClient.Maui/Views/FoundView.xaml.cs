@@ -8,10 +8,6 @@ public partial class FoundView : ContentView
 	public FoundView()
 	{
 		InitializeComponent();
+		this.BindingContext = ServiceHelper.GetRequiredService<FoundViewModel>();
 	}
-
-    protected override void OnApplyTemplate()
-    {
-        base.OnApplyTemplate();
-    }
 }

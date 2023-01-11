@@ -24,6 +24,7 @@
         <tabs:TabHostView
             Grid.Row="1"
             HeightRequest="50"
+            SelectedIndex="{Binding CurrentTypeIndex, Mode=TwoWay}"
             ShowScrollbar="False"
             TabType="Scrollable">
             <tabs:UnderlinedTabItem Label="推荐" Style="{StaticResource ScrollableTabStyle}" />
@@ -34,6 +35,11 @@
             <tabs:UnderlinedTabItem Label="ACG" Style="{StaticResource ScrollableTabStyle}" />
         </tabs:TabHostView>
 
-        <tabs:ViewSwitcher x:Name="Switcher" Grid.Row="1" />
+        <tabs:ViewSwitcher
+            x:Name="Switcher"
+            Grid.Row="1"
+            SelectedIndex="{Binding CurrentTypeIndex, Mode=TwoWay}">
+            <tabs:DelayedView />
+        </tabs:ViewSwitcher>
     </Grid>
 </ContentPage>

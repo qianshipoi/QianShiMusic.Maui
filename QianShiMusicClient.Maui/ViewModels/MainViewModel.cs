@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 using QianShiMusicClient.Maui.Helpers;
-
-using System.Collections.ObjectModel;
+using QianShiMusicClient.Maui.Models;
+using QianShiMusicClient.Maui.Views;
 
 namespace QianShiMusicClient.Maui.ViewModels;
 
@@ -11,18 +11,17 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     int _currentViewIndex;
 
-    public FoundViewModel? FoundViewModel { get; private set; }
-    public HomeViewModel? HomeViewModel { get; private set; }
+    public List<TabBarItem> Tabs { get; } 
 
-    public List<string> Tabs { get; } = new List<string>()
+    public MainViewModel()
     {
-        "我的",
-        "发现"
-    };
+        var foundVm = ServiceHelper.GetRequiredService<FoundViewModel>();
+        var homeVm = ServiceHelper.GetRequiredService<HomeViewModel>();
 
-    public void Init()
-    {
-        FoundViewModel = ServiceHelper.GetRequiredService<FoundViewModel>();
-        HomeViewModel = ServiceHelper.GetRequiredService<HomeViewModel>();
+        Tabs = new List<TabBarItem>
+        {
+            new TabBarItem("发现",IconFontIcons.Faxian, typeof(FoundView), foundVm),
+            new TabBarItem("我的",IconFontIcons.Music, typeof(HomeView),homeVm),
+        };
     }
 }

@@ -38,21 +38,18 @@ public class MoreOption
     }
 }
 
-public partial class TabBarItem : ObservableObject
+public class TabBarItem
 {
     public string Name { get; set; }
     public string Icon { get; set; }
-
-    [ObservableProperty]
-    private bool _isSelected;
-
     public Type ViewType { get; set; }
+    public object ViewModel { get; set; }
 
-    public TabBarItem(string name, string icon, bool isSelected, Type viewType)
+    public TabBarItem(string name, string icon, Type viewType, object viewModel)
     {
         Name = name;
         Icon = icon;
-        IsSelected = isSelected;
         ViewType = viewType;
+        ViewModel = viewModel;
     }
 }

@@ -10,6 +10,7 @@ public partial class HomeView : ContentView
 	public HomeView()
 	{
 		InitializeComponent();
+        this.BindingContext = ServiceHelper.GetRequiredService<HomeViewModel>();
         MainControl.Scrolled += MainControl_Scrolled;
     }
 
