@@ -9,4 +9,10 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 		this.BindingContext = viewModel;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		(BindingContext as MainViewModel)!.Init();
+    }
 }

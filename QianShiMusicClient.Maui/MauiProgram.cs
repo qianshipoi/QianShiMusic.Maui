@@ -73,7 +73,7 @@ public static class MauiProgram
             return ApiClient.Current;
         });
 
-        //services.AddTransientWithShellRoute<MessageDetailPage, MessageDetailViewModel>(nameof(MessageDetailPage));
+        services.AddSingletonWithShellRoute<PlaylistPage, PlaylistViewModel>(nameof(PlaylistPage));
         return services;
     }
 }

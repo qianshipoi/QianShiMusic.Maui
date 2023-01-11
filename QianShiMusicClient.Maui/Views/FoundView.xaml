@@ -80,6 +80,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="{x:Type models:HomeOption}">
                             <StackLayout Margin="16,0" WidthRequest="46">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Command}" />
+                                </StackLayout.GestureRecognizers>
                                 <Label
                                     FontFamily="{x:Static models:IconFontIcons.FontFamily}"
                                     FontSize="28"

@@ -28,4 +28,7 @@ public class NavigationService : INavigationService
 
     public Task PushAsync(Page page)
         => Page.Navigation.PushAsync(page);
+
+    public Task GoToPlaylistPageAsync()
+        => Shell.GoToAsync(nameof(PlaylistPage));
 }

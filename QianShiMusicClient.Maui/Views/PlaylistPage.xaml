@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QianShiMusicClient.Maui.Views.PlaylistPage"
-             Title="PlaylistPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="QianShiMusicClient.Maui.Views.PlaylistPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:tabs="http://sharpnado.com"
+    xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    Title="PlaylistPage"
+    x:DataType="vms:PlaylistViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ScrollableTabStyle" TargetType="tabs:UnderlinedTabItem">
+                <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
+                <Setter Property="FontFamily" Value="OpenSansSemibold" />
+                <Setter Property="LabelSize" Value="14" />
+                <Setter Property="Padding" Value="20, 0" />
+                <Setter Property="UnderlineAllTab" Value="False" />
+                <Setter Property="UnderlineHeight" Value="2" />
+                <Setter Property="UnselectedLabelColor" Value="{StaticResource Gray200}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto,*">
+        <tabs:TabHostView
+            Grid.Row="1"
+            HeightRequest="50"
+            ShowScrollbar="False"
+            TabType="Scrollable">
+            <tabs:UnderlinedTabItem Label="推荐" Style="{StaticResource ScrollableTabStyle}" />
+            <tabs:UnderlinedTabItem Label="官方" Style="{StaticResource ScrollableTabStyle}" />
+            <tabs:UnderlinedTabItem Label="精品" Style="{StaticResource ScrollableTabStyle}" />
+            <tabs:UnderlinedTabItem Label="共享歌单" Style="{StaticResource ScrollableTabStyle}" />
+            <tabs:UnderlinedTabItem Label="华语" Style="{StaticResource ScrollableTabStyle}" />
+            <tabs:UnderlinedTabItem Label="ACG" Style="{StaticResource ScrollableTabStyle}" />
+        </tabs:TabHostView>
+
+        <tabs:ViewSwitcher x:Name="Switcher" Grid.Row="1" />
+    </Grid>
 </ContentPage>

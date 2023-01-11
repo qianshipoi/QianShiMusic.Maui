@@ -5,6 +5,7 @@
         Task GoToLoginByEmailPageAsync();
         Task GoToLoginByPhonePageAsync();
         Task GoToLoginPageAsync();
+        Task GoToPlaylistPageAsync();
         Task PushModelAsync(Page page);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 
 using QianShiMusicClient.Maui.Models;
+using QianShiMusicClient.Maui.Services;
 
 using System.Collections.ObjectModel;
 
@@ -16,7 +17,7 @@ public sealed partial class FoundViewModel : ViewModelBase
 
     public ObservableCollection<List<Song>> RelevantSongs { get; private set; }
 
-    public FoundViewModel()
+    public FoundViewModel(INavigationService navigationService)
     {
         Carousels = new ObservableCollection<Carousel>
         {
@@ -31,7 +32,7 @@ public sealed partial class FoundViewModel : ViewModelBase
         {
             new HomeOption("每日推荐",IconFontIcons.CalendarFill),
             new HomeOption("私人FM",IconFontIcons.BxsRadio),
-            new HomeOption("歌单",IconFontIcons.Gedan),
+            new HomeOption("歌单",IconFontIcons.Gedan){ Command = new AsyncRelayCommand(() => navigationService.GoToPlaylistPageAsync() )},
             new HomeOption("排行榜",IconFontIcons.ARankinglistFill),
             new HomeOption("有声书",IconFontIcons.Book),
             new HomeOption("数字专辑",IconFontIcons.BxsAlbum),

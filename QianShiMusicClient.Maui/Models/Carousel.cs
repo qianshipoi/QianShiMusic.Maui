@@ -8,7 +8,10 @@ public record Carousel(string Path);
 
 public record Song(string Name, string PicUrl, int PlayCount);
 
-public record HomeOption(string Name, string Icon);
+public record HomeOption(string Name, string Icon)
+{
+    public ICommand? Command { get; init; }
+}
 
 public record Playlist(string Name, string PicUrl, int SongCount);
 

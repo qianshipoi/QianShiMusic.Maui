@@ -98,8 +98,26 @@
             Margin="0"
             tabs:TouchEffect.Color="Transparent"
             HeightRequest="48"
+            ItemsSource="{Binding Tabs}"
             SelectedIndex="{Binding CurrentViewIndex, Mode=TwoWay}">
-            <tabs:MaterialUnderlinedTabItem
+            <tabs:TabHostView.ItemTemplate>
+                <DataTemplate>
+                    <tabs:MaterialUnderlinedTabItem
+                        IconOptions="TopIcon"
+                        IconTextSpacing="0"
+                        Label="{Binding}"
+                        Style="{StaticResource BottomTabStyle}"
+                        UnderlineHeight="0">
+                        <tabs:MaterialUnderlinedTabItem.IconImageSource>
+                            <FontImageSource
+                                FontFamily="{x:Static models:IconFontIcons.FontFamily}"
+                                Glyph="{x:Static models:IconFontIcons.Faxian}"
+                                Color="{StaticResource Gray300}" />
+                        </tabs:MaterialUnderlinedTabItem.IconImageSource>
+                    </tabs:MaterialUnderlinedTabItem>
+                </DataTemplate>
+            </tabs:TabHostView.ItemTemplate>
+            <!--<tabs:MaterialUnderlinedTabItem
                 IconOptions="TopIcon"
                 IconTextSpacing="0"
                 Label="发现"
@@ -124,7 +142,7 @@
                         Glyph="{x:Static models:IconFontIcons.Music}"
                         Color="{StaticResource Gray300}" />
                 </tabs:MaterialUnderlinedTabItem.IconImageSource>
-            </tabs:MaterialUnderlinedTabItem>
+            </tabs:MaterialUnderlinedTabItem>-->
         </tabs:TabHostView>
     </Grid>
 </ContentPage>
