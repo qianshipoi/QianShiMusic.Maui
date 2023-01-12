@@ -39,21 +39,21 @@
         <Grid BackgroundColor="{StaticResource Gray100}">
             <Grid.Resources>
                 <ResourceDictionary>
-                    <DataTemplate x:Key="FoundDataTemplate">
-                        <tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">
-                            <views:FoundView />
-                        </tabs:DraggableViewCell>
+                    <DataTemplate x:Key="FoundDataTemplate" x:DataType="models:TabBarItem">
+                        <!--<tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">-->
+                        <views:FoundView BindingContext="{Binding ViewModel}" />
+                        <!--</tabs:DraggableViewCell>-->
                     </DataTemplate>
                     <DataTemplate x:Key="HomeDataTemplate">
-                        <tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">
-                            <views:HomeView />
-                            <!--<tabs:DelayedView
+                        <!--<tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">-->
+                        <views:HomeView />
+                        <!--<tabs:DelayedView
                                 x:TypeArguments="views:HomeView"
                                 AccentColor="{StaticResource Primary}"
                                 Animate="True"
                                 BindingContext="{Binding ViewModel}"
                                 UseActivityIndicator="True" />-->
-                        </tabs:DraggableViewCell>
+                        <!--</tabs:DraggableViewCell>-->
                     </DataTemplate>
                     <helpers:MainTabDataTemplateSelector
                         x:Key="BarSelector"
@@ -61,11 +61,16 @@
                         HomeDataTemplate="{StaticResource HomeDataTemplate}" />
                 </ResourceDictionary>
             </Grid.Resources>
-            <tabs:CarouselView
+            <!--<tabs:CarouselView
                 AnimateScroll="True"
                 CurrentIndex="{Binding CurrentViewIndex, Mode=TwoWay}"
                 ItemTemplate="{StaticResource BarSelector}"
-                ItemsSource="{Binding Tabs}" />
+                ItemsSource="{Binding Tabs}" />-->
+            <CarouselView
+                CurrentItem="{Binding CurrentItem}"
+                ItemTemplate="{StaticResource BarSelector}"
+                ItemsSource="{Binding Tabs}"
+                Loop="False" />
             <!--<tabs:ViewSwitcher
                 x:Name="Switcher"
                 Animate="False"
@@ -74,13 +79,13 @@
                     x:TypeArguments="views:FoundView"
                     AccentColor="{StaticResource Primary}"
                     Animate="True"
-                    BindingContext="{Binding FoundViewModel}"
+                    BindingContext="{Binding FoundVm}"
                     UseActivityIndicator="True" />
                 <tabs:DelayedView
                     x:TypeArguments="views:HomeView"
                     AccentColor="{StaticResource Primary}"
                     Animate="True"
-                    BindingContext="{Binding HomeViewModel}"
+                    BindingContext="{Binding HomeVm}"
                     UseActivityIndicator="True" />
             </tabs:ViewSwitcher>-->
             <Grid
