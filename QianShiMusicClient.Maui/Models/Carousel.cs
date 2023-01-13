@@ -43,13 +43,13 @@ public class TabBarItem
     public string Name { get; set; }
     public string Icon { get; set; }
     public Type ViewType { get; set; }
-    public object ViewModel { get; set; }
+    public View View { get; set; }
 
-    public TabBarItem(string name, string icon, Type viewType, object viewModel)
+    public TabBarItem(string name, string icon, Type viewType, View view)
     {
         Name = name;
         Icon = icon;
         ViewType = viewType;
-        ViewModel = viewModel;
+        View = view;
     }
 }

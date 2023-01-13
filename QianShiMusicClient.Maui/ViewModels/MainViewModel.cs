@@ -4,6 +4,8 @@ using QianShiMusicClient.Maui.Helpers;
 using QianShiMusicClient.Maui.Models;
 using QianShiMusicClient.Maui.Views;
 
+using Sharpnado.Tabs;
+
 namespace QianShiMusicClient.Maui.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
@@ -51,10 +53,15 @@ public partial class MainViewModel : ViewModelBase
         _foundVm = ServiceHelper.GetRequiredService<FoundViewModel>();
         _homeVm = ServiceHelper.GetRequiredService<HomeViewModel>();
 
+       
+
         Tabs = new List<TabBarItem>
         {
-            new TabBarItem("发现",IconFontIcons.Faxian, typeof(FoundView), _foundVm),
-            new TabBarItem("我的",IconFontIcons.Music, typeof(HomeView),_homeVm),
+            new TabBarItem("发现",IconFontIcons.Faxian, typeof(FoundView), new FoundView()
+            {
+                BindingContext = _foundVm
+            }),
+            new TabBarItem("我的",IconFontIcons.Music, typeof(HomeView),new HomeView()),
         };
     }
 }

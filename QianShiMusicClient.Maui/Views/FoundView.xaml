@@ -47,7 +47,10 @@
         <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
             <StackLayout>
                 <Grid HeightRequest="160" VerticalOptions="Start">
-                    <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding Carousels}">
+                    <CarouselView
+                        IndicatorView="indicatorView"
+                        InputTransparent="True"
+                        ItemsSource="{Binding Carousels}">
                         <CarouselView.ItemTemplate>
                             <DataTemplate x:DataType="{x:Type models:Carousel}">
                                 <Frame

@@ -136,7 +136,7 @@
                     BorderColor="Transparent"
                     VerticalOptions="Start">
                     <StackLayout>
-                        <!--<toolkit:UniformItemsLayout BindableLayout.ItemsSource="{Binding Options}" MaxColumns="4">
+                        <toolkit:UniformItemsLayout BindableLayout.ItemsSource="{Binding Options}" MaxColumns="4">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="{x:Type models:HomeOption}">
                                     <Grid
@@ -157,7 +157,7 @@
                                     </Grid>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
-                        </toolkit:UniformItemsLayout>-->
+                        </toolkit:UniformItemsLayout>
                         <Border
                             Margin="0,4,0,0"
                             BackgroundColor="#F5F5F5"
