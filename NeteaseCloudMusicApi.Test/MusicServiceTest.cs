@@ -71,7 +71,7 @@ namespace NeteaseCloudMusicApi.Test
             Assert.NotEmpty(response.Banners);
         }
 
-        [Fact] 
+        [Fact]
         public async Task CallUserLevel()
         {
             var response = await _musicService.UserLevel(new Requests.BaseRequest(DateTime.Now.Ticks));
@@ -120,6 +120,26 @@ namespace NeteaseCloudMusicApi.Test
 
             Assert.Equal(200, response.Code);
             Assert.True(response.Data);
+        }
+
+        [Fact]
+        public async Task LoginQrCode()
+        {
+            var keyResponse = await _musicService.LoginQrKey(new Requests.BaseRequest(DateTime.Now.Ticks));
+
+            Assert.Equal(200, keyResponse.Code);
+            Assert.NotNull(keyResponse.Data);
+            Assert.NotNull(keyResponse.Data.Unikey);
+
+            var qrUrlResponse = await _musicService.LoginQrCreate(new Requests.LoginQrCreateRequest(keyResponse.Data.Unikey, true, DateTime.Now.Ticks));
+
+            Assert.Equal(200, qrUrlResponse.Code);
+            Assert.NotEmpty(qrUrlResponse.Data.Qrimg);
+            Assert.NotEmpty(qrUrlResponse.Data.Qrurl);
+
+            var checkResponse = await _musicService.LoginQrCheck(new Requests.LoginQrCheckRequest(keyResponse.Data.Unikey, DateTime.Now.Ticks));
+
+            Assert.Equal(801, checkResponse.Code);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 
+using Material.Components.Maui.Extensions;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -32,6 +34,17 @@ public static class MauiProgram
             .UseSkiaSharp()
             .UseSharpnadoTabs(loggerEnable: false)
             .UseSharpnadoCollectionView(loggerEnable:false)
+            .UseMaterialComponents(
+                new List<string>
+                {
+                    "Roboto-Regular.ttf",
+                    "Roboto-Italic.ttf",
+                    "Roboto-Medium.ttf",
+                    "Roboto-MediumItalic.ttf",
+                    "Roboto-Bold.ttf",
+                    "Roboto-BoldItalic.ttf",
+                }
+            )
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -64,6 +77,7 @@ public static class MauiProgram
 
         services.AddTransient<LoginByEmailPage, LoginByEmailViewModel>();
         services.AddTransient<LoginByPhonePage, LoginByPhoneViewModel>();
+        services.AddTransient<LoginByQrCodePage, LoginByQrCodeViewModel>();
         services.AddTransient<ILoginService, LoginService>();
         services.AddSingleton<MenuViewModel>();
 

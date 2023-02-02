@@ -14,6 +14,15 @@ public interface IMusicService
     [Post("/login")]
     Task<LoginResponse> Login([Body(BodySerializationMethod.UrlEncoded)] LoginRequest request, CancellationToken cancellationToken = default);
 
+    [Get("/login/qr/key")]
+    Task<LoginQrKeyResponse> LoginQrKey(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/login/qr/create")]
+    Task<LoginQrCreateResponse> LoginQrCreate(LoginQrCreateRequest request, CancellationToken cancellationToken = default);
+
+    [Get("/login/qr/check")]
+    Task<LoginQrCheckResponse> LoginQrCheck(LoginQrCheckRequest request, CancellationToken cancellationToken = default);
+
     [Get("/artist/album")]
     Task<ArtistAlbumResponse> ArtistAlbum(ArtistAlbumRequest request, CancellationToken cancellationToken = default);
 

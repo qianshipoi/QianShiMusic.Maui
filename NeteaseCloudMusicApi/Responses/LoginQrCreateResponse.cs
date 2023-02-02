@@ -10,6 +10,6 @@ public class LoginQrCreateResponse
     {
         public string Qrurl { get; set; } = string.Empty;
 
-        public string Qrimg { get; set; } = string.Empty;
+        public string? Qrimg { get; set; }
     }
 }

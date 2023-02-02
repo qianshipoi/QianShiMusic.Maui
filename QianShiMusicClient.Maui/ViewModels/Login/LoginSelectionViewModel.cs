@@ -21,4 +21,7 @@ public sealed partial class LoginSelectionViewModel : ViewModelBase
 
     [RelayCommand]
     Task GoToLoginByPhonePage() => _navigationService.GoToLoginByPhonePageAsync();
+
+    [RelayCommand]
+    Task GoToLoginByQrCodePage() => _navigationService.GoToLoginByQrCodePageCommand();
 }

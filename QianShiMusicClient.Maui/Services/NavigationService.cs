@@ -17,11 +17,14 @@ public class NavigationService : INavigationService
     public Task GoToLoginPageAsync()
         => PushModelAsync(_serviceProvider.GetRequiredService<LoginSelectionPage>());
 
-    public  Task GoToLoginByEmailPageAsync()
+    public Task GoToLoginByEmailPageAsync()
         => PushAsync(_serviceProvider.GetRequiredService<LoginByEmailPage>());
 
-    public  Task GoToLoginByPhonePageAsync()
+    public Task GoToLoginByPhonePageAsync()
         => PushAsync(_serviceProvider.GetRequiredService<LoginByPhonePage>());
+
+    public Task GoToLoginByQrCodePageCommand()
+        => PushAsync(_serviceProvider.GetRequiredService<LoginByQrCodePage>());
 
     public Task PushModelAsync(Page page)
         => Page.Navigation.PushModalAsync(page);

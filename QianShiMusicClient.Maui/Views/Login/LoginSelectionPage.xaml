@@ -12,6 +12,7 @@
         Padding="60,0"
         Spacing="16"
         VerticalOptions="Center">
+        <Button Command="{Binding GoToLoginByQrCodePageCommand}" Text="二维码登录" />
         <Button Command="{Binding GoToLoginByPhonePageCommand}" Text="手机号登录" />
         <Button Command="{Binding GoToLoginByEmailPageCommand}" Text="网易邮箱登录" />
     </VerticalStackLayout>

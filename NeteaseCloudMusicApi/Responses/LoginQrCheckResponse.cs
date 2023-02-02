@@ -1,13 +1,11 @@
 ﻿namespace NeteaseCloudMusicApi.Responses;
 
-public class LoginQrCheckResponse
+public class LoginQrCheckResponse : BaseResponse
 {
     /// <summary>
     /// 800 二维码已过期 801 等待扫码 802 授权中 803 授权成功
     /// </summary>
-    public int Code { get; set; }
-
-    public string Message { get; set; } = string.Empty;
+    public new int Code { get; set; }
 
     /// <summary>
     /// 头像 仅当Code为802时有值
