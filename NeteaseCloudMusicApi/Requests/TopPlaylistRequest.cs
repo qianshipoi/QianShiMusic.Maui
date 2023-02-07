@@ -3,7 +3,7 @@
 /// <param name="Limit"><inheritdoc/></param>
 /// <param name="Offset"><inheritdoc/></param>
 /// <param name="Cat"> 类别 </param>
-public record TopPlaylistRequest(int? Limit, int? Offset, [property: AliasAs("cat")] string? Cat) : PagedRequestBase(Limit, Offset)
+public record TopPlaylistRequest([property: AliasAs("cat")] string? Cat) : PagedRequestBase(null, null)
 {
     /// <summary>
     /// 排序 now hot(默认)

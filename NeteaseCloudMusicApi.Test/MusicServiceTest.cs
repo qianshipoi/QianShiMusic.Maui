@@ -15,6 +15,8 @@ namespace NeteaseCloudMusicApi.Test
 
         readonly IMusicService _musicService;
 
+        long Now => DateTime.Now.Ticks;
+
         public MusicServiceTest(ITestOutputHelper output) : base(output)
         {
             ApiClient.Init("https://www.kuriyama.top/music-api", CookieString);
@@ -140,6 +142,40 @@ namespace NeteaseCloudMusicApi.Test
             var checkResponse = await _musicService.LoginQrCheck(new Requests.LoginQrCheckRequest(keyResponse.Data.Unikey, DateTime.Now.Ticks));
 
             Assert.Equal(801, checkResponse.Code);
+        }
+
+        [Fact]
+        public async Task PlaylistHot()
+        {
+            var response = await _musicService.PlaylistHot(new Requests.BaseRequest(Now));
+
+            Assert.Equal(200, response.Code);
+            Assert.NotNull(response.Tags);
+        }
+
+        [Fact]
+        public async Task PlaylistCatlist()
+        {
+            var response = await _musicService.PlaylistCatlist(new Requests.BaseRequest(Now));
+
+            Assert.Equal(200, response.Code);
+            Assert.NotNull(response.Sub);
+            Assert.NotNull(response.All);
+            Assert.NotNull(response.Categories);
+        }
+
+        [Theory]
+        [InlineData("官方")]
+        [InlineData("华语")]
+        [InlineData("ACG")]
+        public async Task TopPlaylist(string cat)
+        {
+            var response = await _musicService.TopPlaylist(new Requests.TopPlaylistRequest(cat)
+            {
+                Time = Now
+            });
+
+            Assert.Equal(200, response.Code);
         }
     }
 }

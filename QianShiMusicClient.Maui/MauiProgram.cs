@@ -56,6 +56,8 @@ public static class MauiProgram
             })
             .Services.ConfigureService();
 
+        Sharpnado.TaskLoaderView.Initializer.Initialize(true);
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

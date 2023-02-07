@@ -3,43 +3,107 @@
     x:Class="QianShiMusicClient.Maui.Views.PlaylistPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:QianShiMusicClient.Maui.Controls"
+    xmlns:md="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:tabs="http://sharpnado.com"
+    xmlns:taskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
     xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
     Title="PlaylistPage"
     x:DataType="vms:PlaylistViewModel">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="ScrollableTabStyle" TargetType="tabs:UnderlinedTabItem">
-                <Setter Property="SelectedTabColor" Value="{StaticResource Primary}" />
-                <Setter Property="FontFamily" Value="OpenSansSemibold" />
-                <Setter Property="LabelSize" Value="14" />
-                <Setter Property="Padding" Value="20, 0" />
-                <Setter Property="UnderlineAllTab" Value="False" />
-                <Setter Property="UnderlineHeight" Value="2" />
-                <Setter Property="UnselectedLabelColor" Value="{StaticResource Gray200}" />
-            </Style>
+            <Color x:Key="SurfaceColor">Transparent</Color>
+            <Color x:Key="OnSurfaceVariantColor">Black</Color>
+            <Color x:Key="OnSurfaceColor">Transparent</Color>
+            <Color x:Key="SurfaceTintColor">Black</Color>
+            <Color x:Key="SurfaceColorOnSurfaceColor">Black</Color>
+            <Color x:Key="PrimaryColor">Red</Color>
+
+            <!--<Style TargetType="md:TabItem">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontWeight" Value="600" />
+                <Setter Property="MinimumWidthRequest" Value="96" />
+                <Setter Property="ActiveIndicatorShape" Value="3,3,0,0" />
+                <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                <Setter Property="ForegroundColor" Value="{DynamicResource OnSurfaceVariantColor}" />
+                <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                                    <Setter Property="ForegroundColor" Value="{DynamicResource OnSurfaceVariantColor}" />
+                                    <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                                    <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                                    <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="hovered">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                                    <Setter Property="ForegroundColor" Value="{DynamicResource OnSurfaceVariantColor}" />
+                                    <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                                    <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                                    <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="StateLayerOpacity" Value="0.08" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                                    <Setter Property="ForegroundColor" Value="{DynamicResource OnSurfaceVariantColor}" />
+                                    <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                                    <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                                    <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="StateLayerOpacity" Value="0.12" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="normal:actived">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                                    <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                                    <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                                    <Setter Property="ForegroundColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="StateLayerOpacity" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="hovered:actived">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                                    <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                                    <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                                    <Setter Property="ForegroundColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="StateLayerOpacity" Value="0.08" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="pressed:actived">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColour" Value="{DynamicResource SurfaceColor}" />
+                                    <Setter Property="StateLayerColor" Value="{DynamicResource OnSurfaceColor}" />
+                                    <Setter Property="RippleColor" Value="{DynamicResource SurfaceTintColor}" />
+                                    <Setter Property="ForegroundColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="ActiveIndicatorColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter Property="StateLayerOpacity" Value="0.12" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>-->
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto,*">
-        <tabs:TabHostView
-            Grid.Row="1"
-            HeightRequest="50"
-            SelectedIndex="{Binding CurrentTypeIndex, Mode=TwoWay}"
-            ShowScrollbar="False"
-            TabType="Scrollable">
-            <tabs:UnderlinedTabItem Label="推荐" Style="{StaticResource ScrollableTabStyle}" />
-            <tabs:UnderlinedTabItem Label="官方" Style="{StaticResource ScrollableTabStyle}" />
-            <tabs:UnderlinedTabItem Label="精品" Style="{StaticResource ScrollableTabStyle}" />
-            <tabs:UnderlinedTabItem Label="共享歌单" Style="{StaticResource ScrollableTabStyle}" />
-            <tabs:UnderlinedTabItem Label="华语" Style="{StaticResource ScrollableTabStyle}" />
-            <tabs:UnderlinedTabItem Label="ACG" Style="{StaticResource ScrollableTabStyle}" />
-        </tabs:TabHostView>
-
-        <tabs:ViewSwitcher
-            x:Name="Switcher"
-            Grid.Row="1"
-            SelectedIndex="{Binding CurrentTypeIndex, Mode=TwoWay}">
-            <tabs:DelayedView />
-        </tabs:ViewSwitcher>
+    <Grid>
+        <md:Tabs
+            x:Name="tabs"
+            HasIcon="False"
+            Style="{DynamicResource ScrollTabsStyle}"
+            VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>

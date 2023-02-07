@@ -38,7 +38,7 @@
     </ContentPage.Resources>
     <Grid RowDefinitions="*,Auto">
 
-        <md:Tabs
+        <!--<md:Tabs
             x:Name="tabs"
             SelectedIndex="-1"
             SelectedIndexChanged="tabs_SelectedIndexChanged">
@@ -55,49 +55,49 @@
                     <md:LazyView x:TypeArguments="views:HomeView" BindingContext="{Binding HomeVm}" />
                 </md:FillGrid>
             </md:TabItem>
-        </md:Tabs>
+        </md:Tabs>-->
 
 
-        <!--<Grid BackgroundColor="{StaticResource Gray100}">
-            <Grid.Resources>
+        <Grid BackgroundColor="{StaticResource Gray100}">
+            <!--<Grid.Resources>
                 <ResourceDictionary>
                     <DataTemplate x:Key="FoundDataTemplate" x:DataType="models:TabBarItem">
-        -->
-        <!--<tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">-->
-        <!--
-                        <tabs:DelayedView
-                            x:TypeArguments="views:FoundView"
-                            AccentColor="{StaticResource Primary}"
-                            Animate="True"
-                            BindingContext="{Binding Source={x:Reference Root}, Path=BindingContext.FoundVm}"
-                            UseActivityIndicator="True" />
-        -->
-        <!--</tabs:DraggableViewCell>-->
-        <!--
+
+                        <tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">
+
+                            <tabs:DelayedView
+                                x:TypeArguments="views:FoundView"
+                                AccentColor="{StaticResource Primary}"
+                                Animate="True"
+                                BindingContext="{Binding Source={x:Reference Root}, Path=BindingContext.FoundVm}"
+                                UseActivityIndicator="True" />
+
+                        </tabs:DraggableViewCell>
+
                     </DataTemplate>
                     <DataTemplate x:Key="HomeDataTemplate" x:DataType="models:TabBarItem">
-        -->
-        <!--<tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">-->
-        <!--<views:HomeView />-->
-        <!--
-                        <tabs:DelayedView
-                            x:TypeArguments="views:HomeView"
-                            AccentColor="{StaticResource Primary}"
-                            Animate="True"
-                            BindingContext="{Binding Source={x:Reference Root}, Path=BindingContext.HomeVm}"
-                            UseActivityIndicator="True" />
-        -->
-        <!--</tabs:DraggableViewCell>-->
-        <!--
+
+                        <tabs:DraggableViewCell x:Name="DraggableViewCell" x:DataType="models:TabBarItem">
+                            <views:HomeView />
+
+                            <tabs:DelayedView
+                                x:TypeArguments="views:HomeView"
+                                AccentColor="{StaticResource Primary}"
+                                Animate="True"
+                                BindingContext="{Binding Source={x:Reference Root}, Path=BindingContext.HomeVm}"
+                                UseActivityIndicator="True" />
+
+                        </tabs:DraggableViewCell>
+
                     </DataTemplate>
                     <helpers:MainTabDataTemplateSelector
                         x:Key="BarSelector"
                         FoundDataTemplate="{StaticResource FoundDataTemplate}"
                         HomeDataTemplate="{StaticResource HomeDataTemplate}" />
                 </ResourceDictionary>
-            </Grid.Resources>
-        -->
-        <!--<CarouselView
+            </Grid.Resources>-->
+
+            <!--<CarouselView
                 x:Name="Main"
                 CurrentItem="{Binding CurrentItem}"
                 ItemsSource="{Binding Tabs}"
@@ -112,7 +112,7 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>-->
-        <!--
+
             <tabs:ViewSwitcher
                 x:Name="Switcher"
                 Animate="False"
@@ -195,6 +195,6 @@
                     </tabs:MaterialUnderlinedTabItem>
                 </DataTemplate>
             </tabs:TabHostView.ItemTemplate>
-        </tabs:TabHostView>-->
+        </tabs:TabHostView>
     </Grid>
 </ContentPage>

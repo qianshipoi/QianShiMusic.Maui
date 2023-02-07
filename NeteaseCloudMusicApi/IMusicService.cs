@@ -52,4 +52,13 @@ public interface IMusicService
 
     [Get("/logout")]
     Task<BaseResponse> Logout(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/playlist/hot")]
+    Task<PlaylistHotResponse> PlaylistHot(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/playlist/Catlist")]
+    Task<PlaylistCatlistResponse> PlaylistCatlist(BaseRequest? request = null, CancellationToken cancellationToken = default);
+
+    [Get("/top/playlist")]
+    Task<TopPlaylistResponse> TopPlaylist(TopPlaylistRequest request, CancellationToken cancellationToken = default);
 }

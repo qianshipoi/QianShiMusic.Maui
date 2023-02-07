@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taskLoaderView:TaskLoaderView
+    x:Class="QianShiMusicClient.Maui.Views.Playlists.OfficialPlaylistView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:QianShiMusicClient.Maui.Converters"
+    xmlns:musicModels="clr-namespace:NeteaseCloudMusicApi.Models;assembly=NeteaseCloudMusicApi"
+    xmlns:sho="http://sharpnado.com"
+    xmlns:taskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:QianShiMusicClient.Maui.ViewModels"
+    x:DataType="vms:PlaylistTypeViewModel"
+    Style="{StaticResource SillyTaskLoader}"
+    TaskLoaderNotifier="{Binding SillyPeopleLoaderNotifier}"
+    VerticalOptions="Fill">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:NeteaseImageResourceUrlConverter x:Key="NeteaseImageResourceUrlConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <CollectionView
+        BackgroundColor="Transparent"
+        ItemsLayout="VerticalGrid, 3"
+        ItemsSource="{Binding Playlists}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="musicModels:Playlist">
+                <Grid Padding="4" RowDefinitions="Auto,*">
+                    <Image Source="{Binding CoverImgUrl}" />
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,4,0,8"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="2"
+                        Text="{Binding Name}" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</taskLoaderView:TaskLoaderView>
