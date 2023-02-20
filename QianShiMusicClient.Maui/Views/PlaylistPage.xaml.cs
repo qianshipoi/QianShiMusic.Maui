@@ -87,6 +87,4 @@ public partial class PlaylistPage : ContentPage
             AddView(cat);
         }
     }
-
-
 }

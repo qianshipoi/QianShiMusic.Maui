@@ -7,7 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QianShiMusicClient.Maui", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeteaseCloudMusicApi", "NeteaseCloudMusicApi\NeteaseCloudMusicApi.csproj", "{B4F0A83A-0E3E-42D0-83F6-D6322111B9DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeteaseCloudMusicApi.Test", "NeteaseCloudMusicApi.Test\NeteaseCloudMusicApi.Test.csproj", "{29E3E59D-F1CA-4BBD-9346-5B2164C84952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeteaseCloudMusicApi.Test", "NeteaseCloudMusicApi.Test\NeteaseCloudMusicApi.Test.csproj", "{29E3E59D-F1CA-4BBD-9346-5B2164C84952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic", "QianShiMusic\QianShiMusic.csproj", "{45969E52-E9E5-418A-B82A-0B86C8E03B6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{667E3E43-3133-481A-A091-75A687564870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic.IServices", "Services\QianShiMusic.IServices\QianShiMusic.IServices.csproj", "{6F3CF612-568C-4EE0-832D-E36451491E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic.Services", "Services\QianShiMusic.Services\QianShiMusic.Services.csproj", "{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,9 +37,27 @@ Global
 		{29E3E59D-F1CA-4BBD-9346-5B2164C84952}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29E3E59D-F1CA-4BBD-9346-5B2164C84952}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29E3E59D-F1CA-4BBD-9346-5B2164C84952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45969E52-E9E5-418A-B82A-0B86C8E03B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45969E52-E9E5-418A-B82A-0B86C8E03B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45969E52-E9E5-418A-B82A-0B86C8E03B6E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{45969E52-E9E5-418A-B82A-0B86C8E03B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45969E52-E9E5-418A-B82A-0B86C8E03B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45969E52-E9E5-418A-B82A-0B86C8E03B6E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6F3CF612-568C-4EE0-832D-E36451491E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3CF612-568C-4EE0-832D-E36451491E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3CF612-568C-4EE0-832D-E36451491E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3CF612-568C-4EE0-832D-E36451491E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F3CF612-568C-4EE0-832D-E36451491E5B} = {667E3E43-3133-481A-A091-75A687564870}
+		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE} = {667E3E43-3133-481A-A091-75A687564870}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

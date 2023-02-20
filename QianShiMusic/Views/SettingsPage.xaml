@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="QianShiMusic.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:am="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
+    xmlns:local="clr-namespace:QianShiMusic"
+    xmlns:models="clr-namespace:QianShiMusic.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:QianShiMusic.ViewModels"
+    Title="{local:Localize Settings}"
+    x:DataType="{x:Type vms:SettingsPageViewModel}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+            <ControlTemplate x:Key="ThemeRadioTemplate">
+                <Border
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="120"
+                    HorizontalOptions="Start"
+                    Stroke="{StaticResource Gray100}"
+                    StrokeThickness="1"
+                    VerticalOptions="Start"
+                    WidthRequest="100">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+
+                    <Grid Margin="8" WidthRequest="100">
+                        <Grid
+                            Margin="0,0,8,0"
+                            HeightRequest="18"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            WidthRequest="18">
+                            <Ellipse
+                                Fill="White"
+                                HeightRequest="16"
+                                HorizontalOptions="Center"
+                                Stroke="{StaticResource Gray900}"
+                                StrokeThickness="0.5"
+                                VerticalOptions="Center"
+                                WidthRequest="16" />
+                            <Ellipse
+                                x:Name="Check"
+                                Fill="{StaticResource Primary}"
+                                HeightRequest="8"
+                                HorizontalOptions="Center"
+                                Stroke="{StaticResource Primary}"
+                                VerticalOptions="Center"
+                                WidthRequest="8" />
+                        </Grid>
+                        <ContentPresenter />
+                    </Grid>
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="{StaticResource Primary}" />
+                                        <Setter TargetName="Check" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter Property="Stroke" Value="{StaticResource Gray100}" />
+                                        <Setter TargetName="Check" Property="Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{local:Localize Theme}"
+            VerticalOptions="Center" />
+        <StackLayout Margin="{OnPlatform iOS='30,60,30,30', Default='30'}">
+            <HorizontalStackLayout
+                RadioButtonGroup.GroupName="AppTheme"
+                RadioButtonGroup.SelectedValue="{Binding CurrentAppTheme}"
+                Spacing="12">
+                <HorizontalStackLayout.Resources>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="ControlTemplate" Value="{StaticResource ThemeRadioTemplate}" />
+                        <Setter Property="Margin" Value="16,0" />
+                    </Style>
+                </HorizontalStackLayout.Resources>
+                <RadioButton Value="{x:Static am:AppTheme.Unspecified}">
+                    <RadioButton.Content>
+                        <Grid RowDefinitions="4*,1*">
+                            <Image
+                                HeightRequest="42"
+                                HorizontalOptions="Center"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Glyph={x:Static models:IconFontIcons.MonitorSystem},
+                                                   Color={StaticResource Gray900},
+                                                   Size=42}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                Text="System"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="{x:Static am:AppTheme.Light}">
+                    <RadioButton.Content>
+                        <Grid RowDefinitions="4*,1*">
+                            <Image
+                                HeightRequest="42"
+                                HorizontalOptions="Center"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Glyph={x:Static models:IconFontIcons.LightOn},
+                                                   Color={StaticResource Gray900},
+                                                   Size=42}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                Text="Light"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="{x:Static am:AppTheme.Dark}">
+                    <RadioButton.Content>
+                        <Grid RowDefinitions="4*,1*">
+                            <Image
+                                HeightRequest="42"
+                                HorizontalOptions="Center"
+                                Source="{FontImage FontFamily={x:Static models:IconFontIcons.FontFamily},
+                                                   Glyph={x:Static models:IconFontIcons.Moon},
+                                                   Color={StaticResource Gray900},
+                                                   Size=42}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                Text="Dark"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </RadioButton.Content>
+                </RadioButton>
+            </HorizontalStackLayout>
+        </StackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{local:Localize Language}"
+            VerticalOptions="Center" />
+        <Picker
+            Title="{local:Localize Language}"
+            ItemDisplayBinding="{Binding NativeName}"
+            ItemsSource="{Binding Languages}"
+            SelectedItem="{Binding CurrentLanguage}" />
+    </VerticalStackLayout>
+</ContentPage>
