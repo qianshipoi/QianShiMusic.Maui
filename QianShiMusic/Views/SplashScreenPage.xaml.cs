@@ -30,7 +30,7 @@ public partial class SplashScreenPage : ContentPage
     private async void BackgroundWorker_DoWork(object? sender, DoWorkEventArgs e)
     {
         var cookieStr = Preferences.Get("cookie", string.Empty);
-        if (!string.IsNullOrEmpty(cookieStr))
+        if (string.IsNullOrEmpty(cookieStr))
         {
             GoToLoginPage();
             return;
