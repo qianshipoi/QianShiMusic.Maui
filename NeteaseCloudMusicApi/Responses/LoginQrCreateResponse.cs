@@ -1,9 +1,7 @@
 ﻿namespace NeteaseCloudMusicApi.Responses;
 
-public class LoginQrCreateResponse
+public class LoginQrCreateResponse : BaseResponse
 {
-    public int Code { get; set; }
-
     public Result Data { get; set; } = null!;
 
     public record Result

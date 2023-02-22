@@ -6,7 +6,9 @@ using Mopups.Hosting;
 
 using NeteaseCloudMusicApi;
 
+using QianShiMusic.IServices;
 using QianShiMusic.Models;
+using QianShiMusic.Services;
 using QianShiMusic.ViewModels;
 using QianShiMusic.Views;
 
@@ -48,9 +50,15 @@ namespace QianShiMusic
 
         public static IServiceCollection ConfigureService(this IServiceCollection services)
         {
-            services.AddTransient<MainPage, MainPageViewModel>();
-            services.AddTransient<FoundPage, FoundPageViewModel>();
-            services.AddTransient<SettingsPage, SettingsPageViewModel>();
+            services.AddSingleton<SplashScreenPage>();
+            services.AddSingleton<AppShell>();
+            services.AddSingleton<MainPage, MainPageViewModel>();
+            services.AddSingleton<FoundPage, FoundPageViewModel>();
+            services.AddSingleton<SettingsPage, SettingsPageViewModel>();
+            services.AddSingleton<LoginPage, LoginViewModel>();
+
+            services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<INotificationService, NotificationService>();
 
             services.AddSingleton(typeof(IMusicService), (serviceProvider) =>
             {
