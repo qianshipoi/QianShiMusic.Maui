@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uranium:StatefulContentView
+    x:Class="QianShiMusic.Controls.PlaylistCardView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:musicModels="clr-namespace:NeteaseCloudMusicApi.Models;assembly=NeteaseCloudMusicApi"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    x:Name="Root"
+    x:DataType="musicModels:Playlist">
+    <uranium:StatefulContentView.Resources>
+        <ResourceDictionary>
+            <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
+        </ResourceDictionary>
+    </uranium:StatefulContentView.Resources>
+    <Grid RowDefinitions="*,24" RowSpacing="8">
+        <toolkit:AvatarView
+            HeightRequest="{Binding Source={x:Reference Root}, Path=WidthRequest}"
+            ImageSource="{Binding CoverImgUrl, StringFormat='{0}?param=240y240'}"
+            WidthRequest="{Binding Source={x:Reference Root}, Path=WidthRequest}" />
+        <Label
+            Grid.Row="1"
+            FontAttributes="Bold"
+            FontSize="20"
+            Text="{Binding Name}"
+            VerticalOptions="Center" />
+    </Grid>
+</uranium:StatefulContentView>

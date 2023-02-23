@@ -29,15 +29,13 @@ namespace QianShiMusic
                 .UseUraniumUI()
                 .UseUraniumUIMaterial()
                 .UseSkiaSharp()
-                .ConfigureFonts(fonts =>
-                {
+                .ConfigureFonts(fonts => {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("iconfont.ttf", IconFontIcons.FontFamily);
                 })
-                .ConfigureMopups(() =>
-                 {
-                 })
+                .ConfigureMopups(() => {
+                })
                 .Services.ConfigureService();
 
 #if DEBUG
@@ -57,11 +55,12 @@ namespace QianShiMusic
             services.AddSingleton<SettingsPage, SettingsPageViewModel>();
             services.AddSingleton<LoginPage, LoginViewModel>();
 
+            services.AddTransientWithShellRoute<PlaylistDetailPage, PlaylistDetailViewModel>(nameof(PlaylistDetailPage));
+
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<INotificationService, NotificationService>();
 
-            services.AddSingleton(typeof(IMusicService), (serviceProvider) =>
-            {
+            services.AddSingleton(typeof(IMusicService), (serviceProvider) => {
                 var cookieStr = Preferences.Get("cookie", string.Empty);
                 ApiClient.Init(AppConst.MusicApi, cookieStr);
                 return ApiClient.Current;

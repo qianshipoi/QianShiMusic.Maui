@@ -32,6 +32,7 @@ public partial class SplashScreenPage : ContentPage
         var cookieStr = Preferences.Get("cookie", string.Empty);
         if (string.IsNullOrEmpty(cookieStr))
         {
+            await Task.Delay(1000);
             GoToLoginPage();
             return;
         }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uranium:StatefulContentView
+    x:Class="QianShiMusic.Controls.SongView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:QianShiMusic.Converters"
+    xmlns:musicModels="clr-namespace:NeteaseCloudMusicApi.Models;assembly=NeteaseCloudMusicApi"
+    xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    x:DataType="musicModels:Song">
+    <uranium:StatefulContentView.Resources>
+        <ResourceDictionary>
+            <converters:LongToTimeSpanConverter x:Key="LongToTimeSpanConverter" />
+        </ResourceDictionary>
+    </uranium:StatefulContentView.Resources>
+    <Grid
+        ColumnDefinitions="Auto,*,Auto"
+        ColumnSpacing="16"
+        RowDefinitions="*,*"
+        RowSpacing="8">
+        <Image Grid.RowSpan="2" Source="{Binding Album.CoverImgUrl, StringFormat='{0}?param=80y80'}" />
+
+        <Label
+            Grid.Column="1"
+            Text="{Binding Name}"
+            VerticalOptions="Center" />
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            BindableLayout.ItemsSource="{Binding Artists}"
+            Orientation="Horizontal">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="musicModels:Artist">
+                    <Button
+                        Margin="0"
+                        Padding="4,2"
+                        CornerRadius="4"
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        MinimumHeightRequest="0"
+                        Text="{Binding Name}"
+                        VerticalOptions="Center" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+        <Label
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Text="{Binding Dt, Converter={StaticResource LongToTimeSpanConverter}, StringFormat='{0:mm\\:ss}'}"
+            VerticalOptions="Center" />
+    </Grid>
+</uranium:StatefulContentView>

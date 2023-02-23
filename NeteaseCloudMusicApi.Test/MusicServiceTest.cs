@@ -177,5 +177,16 @@ namespace NeteaseCloudMusicApi.Test
 
             Assert.Equal(200, response.Code);
         }
+
+        [Fact]
+        public async Task PlaylistDetail()
+        {
+            var response = await _musicService.PlaylistDetail(new Requests.PlaylistdetailRequest(24381616)
+            {
+                Time = Now
+            });
+
+            Assert.Equal(200, response.Code);
+        }
     }
 }

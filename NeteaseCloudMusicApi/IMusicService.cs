@@ -61,4 +61,13 @@ public interface IMusicService
 
     [Get("/top/playlist")]
     Task<TopPlaylistResponse> TopPlaylist(TopPlaylistRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 获取歌单详情
+    /// </summary>
+    /// <param name="requst"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/playlist/detail")]
+    Task<PlaylistDetailResponse> PlaylistDetail(PlaylistdetailRequest requst, CancellationToken cancellationToken = default);
 }

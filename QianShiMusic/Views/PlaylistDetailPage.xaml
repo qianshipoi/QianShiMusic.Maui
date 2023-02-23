@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="QianShiMusic.Views.PlaylistDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:QianShiMusic.Controls"
+    xmlns:musicModels="clr-namespace:NeteaseCloudMusicApi.Models;assembly=NeteaseCloudMusicApi"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:QianShiMusic.ViewModels"
+    Title="PlaylistDetailPage"
+    x:DataType="vms:PlaylistDetailViewModel">
+    <Grid RowDefinitions="320,*">
+        <Grid>
+            <Label Text="{Binding PlaylistDetail.Name}" />
+
+        </Grid>
+        <ListView
+            Grid.Row="1"
+            ItemsSource="{Binding PlaylistDetail.Tracks}"
+            RowHeight="80">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell x:DataType="musicModels:Song">
+                        <controls:SongView />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

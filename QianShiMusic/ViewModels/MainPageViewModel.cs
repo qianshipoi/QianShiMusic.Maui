@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using NeteaseCloudMusicApi;
 using NeteaseCloudMusicApi.Models;
 
 using QianShiMusic.IServices;
+using QianShiMusic.Views;
 
 using System.Collections.ObjectModel;
 
@@ -57,8 +59,7 @@ namespace QianShiMusic.ViewModels
                 More = response.More;
                 _offset += (int)response.Total;
 
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
+                MainThread.BeginInvokeOnMainThread(() => {
                     foreach (var playlist in response.Playlists)
                     {
                         Playlists.Add(playlist);
@@ -71,5 +72,20 @@ namespace QianShiMusic.ViewModels
             }
         }
 
+        [RelayCommand]
+        private async Task ToPlaylistDetail(Playlist playlist)
+        {
+            if (IsBusy)
+            {
+                return;
+            }
+
+            var parameters = new Dictionary<string, object>()
+            {
+                { "Id", playlist.Id },
+            };
+
+            await Shell.Current.GoToAsync(nameof(PlaylistDetailPage), parameters);
+        }
     }
 }

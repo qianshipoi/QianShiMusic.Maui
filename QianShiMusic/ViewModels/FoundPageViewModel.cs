@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+using NeteaseCloudMusicApi;
+
+using QianShiMusic.IServices;
 
 namespace QianShiMusic.ViewModels
 {
     public partial class FoundPageViewModel : BaseViewModel
     {
+        private readonly IMusicService _musicService;
+
+        private readonly INotificationService _notificationService;
+
+        [ObservableProperty]
+        string? _searchText;
+
+        public FoundPageViewModel(IMusicService musicService, INotificationService notificationService)
+        {
+            _musicService = musicService;
+            _notificationService = notificationService;
+        }
     }
 }
