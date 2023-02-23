@@ -1,8 +1,12 @@
 ﻿namespace NeteaseCloudMusicApi.Requests;
 
-public record UserDetailRequest(int? Limit, int? Offset, [property: AliasAs("uid")] long Uid) : PagedRequestBase(Limit, Offset)
+public class UserDetailRequest : PagedRequestBase
 {
-    public UserDetailRequest(long uid) : this(null, null, uid)
+    [AliasAs("uid")]
+    public long Uid { get; set; }
+
+    public UserDetailRequest(long uid)
     {
+        Uid = uid;
     }
 }

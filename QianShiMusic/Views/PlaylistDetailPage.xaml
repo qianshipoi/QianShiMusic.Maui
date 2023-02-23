@@ -9,10 +9,35 @@
     xmlns:vms="clr-namespace:QianShiMusic.ViewModels"
     Title="PlaylistDetailPage"
     x:DataType="vms:PlaylistDetailViewModel">
-    <Grid RowDefinitions="320,*">
-        <Grid>
-            <Label Text="{Binding PlaylistDetail.Name}" />
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,*"
+        RowSpacing="16">
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="{Binding Source={x:RelativeSource Self}, Path=WidthRequest}"
+                Source="{Binding PlaylistDetail.CoverImgUrl, StringFormat='{0}?param=380y380'}"
+                WidthRequest="240" />
+            <Grid
+                Grid.Column="1"
+                RowDefinitions="Auto,*,Auto"
+                RowSpacing="8">
+                <Label
+                    toolkit:DockLayout.DockPosition="Top"
+                    FontAttributes="Bold"
+                    FontSize="28"
+                    Text="{Binding PlaylistDetail.Name}" />
+                <Label Grid.Row="1" Text="{Binding PlaylistDetail.Description}" />
 
+                <StackLayout
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <Button Text="播放" />
+                    <Button Text="收藏" />
+                </StackLayout>
+            </Grid>
         </Grid>
         <ListView
             Grid.Row="1"
@@ -21,7 +46,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell x:DataType="musicModels:Song">
-                        <controls:SongView />
+                        <controls:SongView Padding="8,0" />
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

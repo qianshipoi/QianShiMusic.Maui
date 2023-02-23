@@ -1,6 +1,6 @@
 ﻿namespace NeteaseCloudMusicApi.Requests;
 
-public record AlbumNewRequest(int? Limit, int? Offset) : PagedRequestBase(Limit, Offset)
+public class AlbumNewRequest : PagedRequestBase
 {
     [AliasAs("area")]
     public string? Area { get; set; } = "ALL";

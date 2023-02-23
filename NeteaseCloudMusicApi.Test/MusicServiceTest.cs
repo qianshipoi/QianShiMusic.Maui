@@ -188,5 +188,35 @@ namespace NeteaseCloudMusicApi.Test
 
             Assert.Equal(200, response.Code);
         }
+
+        [Fact]
+        public async Task Search()
+        {
+            var keywords = "海阔天空";
+            {
+                var response = await _musicService.Cloudsearch(new Requests.SearchRequest(keywords, 1));
+                Assert.Equal(200, response.Code);
+            }
+            {
+                var response = await _musicService.SongSearch(new Requests.SongSearchRequest(keywords));
+                Assert.Equal(200, response.Code);
+            }
+            {
+                var response = await _musicService.AlbumSearch(new Requests.AlbumSearchRequest(keywords));
+                Assert.Equal(200, response.Code);
+            }
+            {
+                var response = await _musicService.ArtistSearch(new Requests.ArtistSearchRequest(keywords));
+                Assert.Equal(200, response.Code);
+            }
+            {
+                var response = await _musicService.PlaylistSearch(new Requests.PlaylistSearchRequest(keywords));
+                Assert.Equal(200, response.Code);
+            }
+            {
+                var response = await _musicService.MvSearch(new Requests.MvSearchRequest(keywords));
+                Assert.Equal(200, response.Code);
+            }
+        }
     }
 }

@@ -70,4 +70,58 @@ public interface IMusicService
     /// <returns></returns>
     [Get("/playlist/detail")]
     Task<PlaylistDetailResponse> PlaylistDetail(PlaylistdetailRequest requst, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 搜索
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/cloudsearch")]
+    Task<SearchResponse> Cloudsearch(SearchRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 搜索单曲
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/cloudsearch")]
+    Task<SearchResponse<SongSearchResult>> SongSearch(SongSearchRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 搜索专辑
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/cloudsearch")]
+    Task<SearchResponse<AlbumSearchResult>> AlbumSearch(AlbumSearchRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 搜索作者
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/cloudsearch")]
+    Task<SearchResponse<ArtistSearchResult>> ArtistSearch(ArtistSearchRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 搜索歌单
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/cloudsearch")]
+    Task<SearchResponse<PlaylistSearchResult>> PlaylistSearch(PlaylistSearchRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 搜索MV
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/cloudsearch")]
+    Task<SearchResponse<MovieVideoSearchResult>> MvSearch(MvSearchRequest request, CancellationToken cancellationToken = default);
 }

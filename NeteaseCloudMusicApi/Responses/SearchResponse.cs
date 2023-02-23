@@ -1,8 +1,12 @@
 ﻿namespace NeteaseCloudMusicApi.Responses;
 
-public class SearchResponse<T> : BaseResponse where T : ISearchResultBase
+public class SearchResponse : BaseResponse
 {
-    public T Result { get; set; } = default!;
+    public dynamic Result { get; set; } = default!;
+}
+public class SearchResponse<T> : SearchResponse where T : ISearchResultBase
+{
+    public new T Result { get; set; } = default!;
 }
 
 public interface ISearchResultBase

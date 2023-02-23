@@ -1,8 +1,12 @@
 ﻿namespace NeteaseCloudMusicApi.Requests;
 
-public record UserPlaylistRequest(int? Limit, int? Offset, [property: AliasAs("uid")] long Uid) : PagedRequestBase(Limit, Offset)
+public class UserPlaylistRequest : PagedRequestBase
 {
-    public UserPlaylistRequest(long uid) : this(null, null, uid)
+    [AliasAs("uid")]
+    public long Uid { get; set; }
+
+    public UserPlaylistRequest(long uid)
     {
+        Uid = uid;
     }
 }

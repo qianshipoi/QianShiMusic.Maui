@@ -17,7 +17,12 @@
         ColumnSpacing="16"
         RowDefinitions="*,*"
         RowSpacing="8">
-        <Image Grid.RowSpan="2" Source="{Binding Album.CoverImgUrl, StringFormat='{0}?param=80y80'}" />
+        <Image
+            Grid.RowSpan="2"
+            Aspect="AspectFill"
+            HeightRequest="80"
+            Source="{Binding Album.CoverImgUrl, StringFormat='{0}?param=80y80'}"
+            WidthRequest="80" />
 
         <Label
             Grid.Column="1"
@@ -27,18 +32,17 @@
             Grid.Row="1"
             Grid.Column="1"
             BindableLayout.ItemsSource="{Binding Artists}"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Spacing="8">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="musicModels:Artist">
                     <Button
-                        Margin="0"
                         Padding="4,2"
                         CornerRadius="4"
                         FontSize="12"
-                        HorizontalOptions="Center"
+                        HeightRequest="20"
                         MinimumHeightRequest="0"
-                        Text="{Binding Name}"
-                        VerticalOptions="Center" />
+                        Text="{Binding Name}" />
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </StackLayout>

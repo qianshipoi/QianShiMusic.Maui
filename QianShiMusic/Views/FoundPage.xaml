@@ -3,11 +3,41 @@
     x:Class="QianShiMusic.Views.FoundPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
     Title="FoundPage">
-    <VerticalStackLayout>
-        <Label
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" RowSpacing="8">
+
+        <material:TextField
+            Title="搜索"
+            Margin="32,16,32,0"
+            AllowClear="True"
+            MaximumWidthRequest="480"
+            MinimumWidthRequest="320" />
+
+        <BoxView Grid.Row="1" StyleClass="Divider" />
+
+        <material:RadioButtonGroupView
+            Grid.Row="2"
             HorizontalOptions="Center"
-            Text="FoundPage"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+            Orientation="Horizontal"
+            Spacing="16">
+            <material:RadioButton Text="综合" />
+            <material:RadioButton Text="单曲" />
+            <material:RadioButton Text="歌手" />
+            <material:RadioButton Text="专辑" />
+            <material:RadioButton Text="视频" />
+            <material:RadioButton Text="歌单" />
+            <material:RadioButton Text="用户" />
+        </material:RadioButtonGroupView>
+
+        <BoxView Grid.Row="3" StyleClass="Divider" />
+
+
+
+
+
+
+
+
+    </Grid>
 </ContentPage>
