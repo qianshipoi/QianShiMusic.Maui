@@ -1,4 +1,6 @@
-﻿namespace NeteaseCloudMusicApi.Responses;
+﻿using NeteaseCloudMusicApi.Models;
+
+namespace NeteaseCloudMusicApi.Responses;
 
 public class SearchResponse : BaseResponse
 {

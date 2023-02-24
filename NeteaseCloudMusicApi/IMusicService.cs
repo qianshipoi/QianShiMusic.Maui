@@ -124,4 +124,13 @@ public interface IMusicService
     /// <returns></returns>
     [Get("/cloudsearch")]
     Task<SearchResponse<MovieVideoSearchResult>> MvSearch(MvSearchRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 获取歌单所有歌曲
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/playlist/track/all")]
+    Task<PlaylistTrackAllResponse> PlaylistTrackAll(PlaylistTrackAllRequest request, CancellationToken cancellationToken = default);
 }

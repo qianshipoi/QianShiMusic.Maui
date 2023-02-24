@@ -218,5 +218,15 @@ namespace NeteaseCloudMusicApi.Test
                 Assert.Equal(200, response.Code);
             }
         }
+
+        [Fact]
+        public async Task PlaylistTrackAll()
+        {
+            var response = await _musicService.PlaylistTrackAll(new Requests.PlaylistTrackAllRequest(24381616)
+            {
+                Time = DateTime.Now.Ticks
+            });
+            Assert.Equal(200, response.Code);
+        }
     }
 }

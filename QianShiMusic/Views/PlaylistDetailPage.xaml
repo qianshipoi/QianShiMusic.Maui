@@ -39,18 +39,26 @@
                 </StackLayout>
             </Grid>
         </Grid>
-        <ListView
+        <CollectionView
             Grid.Row="1"
-            ItemsSource="{Binding PlaylistDetail.Tracks}"
-            RowHeight="80">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell x:DataType="musicModels:Song">
-                        <controls:SongView Padding="8,0" />
-                    </ViewCell>
+            ItemsSource="{Binding Songs}"
+            RemainingItemsThreshold="5"
+            RemainingItemsThresholdReachedCommand="{Binding RefreshCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="musicModels:Song">
+                    <controls:SongView Padding="8,0" />
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <StackLayout IsVisible="{OnPlatform False, WinUI=True}">
+                    <Button
+                        Grid.Row="2"
+                        Command="{Binding RefreshCommand}"
+                        IsVisible="{Binding HasMore}"
+                        Text="加载更多" />
+                </StackLayout>
+            </CollectionView.Footer>
+        </CollectionView>
 
         <ActivityIndicator
             Grid.RowSpan="2"
