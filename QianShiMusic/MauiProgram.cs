@@ -34,8 +34,7 @@ namespace QianShiMusic
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("iconfont.ttf", IconFontIcons.FontFamily);
                 })
-                .ConfigureMopups(() => {
-                })
+                .ConfigureMopups()
                 .Services.ConfigureService();
 
 #if DEBUG
@@ -44,7 +43,6 @@ namespace QianShiMusic
 
             return builder.Build();
         }
-
 
         public static IServiceCollection ConfigureService(this IServiceCollection services)
         {

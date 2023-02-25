@@ -54,8 +54,11 @@ namespace QianShiMusic.ViewModels
             if (result)
             {
                 _id = id;
-                _ = GetDetailAsync();
-                _ = Refresh();
+                Task.Run(async () =>
+                {
+                    await GetDetailAsync();
+                    await Refresh();
+                });
             }
         }
 
@@ -78,7 +81,8 @@ namespace QianShiMusic.ViewModels
 
         private async Task GetDetailAsync()
         {
-            await LoadingHandleAsync(async () => {
+            await LoadingHandleAsync(async () =>
+            {
                 var response = await _musicService.PlaylistDetail(new NeteaseCloudMusicApi.Requests.PlaylistdetailRequest(_id));
                 if (response.Code != 200)
                 {
@@ -96,7 +100,8 @@ namespace QianShiMusic.ViewModels
         [RelayCommand(CanExecute = nameof(CanRefresh))]
         private async Task Refresh()
         {
-            await LoadingHandleAsync(async () => {
+            await LoadingHandleAsync(async () =>
+            {
                 var response = await _musicService.PlaylistTrackAll(new NeteaseCloudMusicApi.Requests.PlaylistTrackAllRequest(_id)
                 {
                     Limit = Limit,

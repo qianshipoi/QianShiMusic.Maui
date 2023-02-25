@@ -21,8 +21,11 @@
             Grid.RowSpan="2"
             Aspect="AspectFill"
             HeightRequest="80"
-            Source="{Binding Album.CoverImgUrl, StringFormat='{0}?param=80y80'}"
-            WidthRequest="80" />
+            WidthRequest="80">
+            <Image.Source>
+                <UriImageSource CacheValidity="10:00:00:00" Uri="{Binding Album.CoverImgUrl, StringFormat='{0}?param=80y80'}" />
+            </Image.Source>
+        </Image>
 
         <Label
             Grid.Column="1"

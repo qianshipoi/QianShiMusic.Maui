@@ -5,11 +5,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:QianShiMusic.Controls"
     xmlns:musicModels="clr-namespace:NeteaseCloudMusicApi.Models;assembly=NeteaseCloudMusicApi"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:vms="clr-namespace:QianShiMusic.ViewModels"
     Title="aa"
     x:DataType="{x:Type vms:MainPageViewModel}">
-    <CollectionView ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding Playlists}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView
+        ItemsSource="{Binding Playlists}"
+        RowHeight="80"
+        SelectionMode="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <controls:PlaylistItemView />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Behaviors>
+            <toolkit:EventToCommandBehavior
+                Command="{Binding ToPlaylistDetailCommand}"
+                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                EventName="ItemTapped" />
+        </ListView.Behaviors>
+    </ListView>
+
+    <!--<CollectionView ItemSizingStrategy="MeasureAllItems" ItemsSource="{Binding Playlists}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout
                 HorizontalItemSpacing="8"
@@ -19,8 +45,12 @@
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="musicModels:Playlist">
-                <controls:PlaylistCardView CommandParameter="{Binding}" TappedCommand="{Binding Source={x:RelativeSource AncestorType={x:Type vms:MainPageViewModel}}, Path=ToPlaylistDetailCommand}" />
+                <controls:PlaylistCardView StyleClass="Elevation2">
+                    <controls:PlaylistCardView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vms:MainPageViewModel}}, Path=ToPlaylistDetailCommand}" CommandParameter="{Binding}" />
+                    </controls:PlaylistCardView.GestureRecognizers>
+                </controls:PlaylistCardView>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-    </CollectionView>
+    </CollectionView>-->
 </ContentPage>

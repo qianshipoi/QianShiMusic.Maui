@@ -39,7 +39,28 @@
                 </StackLayout>
             </Grid>
         </Grid>
-        <CollectionView
+        <ListView
+            Grid.Row="1"
+            ItemsSource="{Binding Songs}"
+            RowHeight="80">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:SongView Padding="8,0" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout>
+                    <Button
+                        Grid.Row="2"
+                        Command="{Binding RefreshCommand}"
+                        IsVisible="{Binding HasMore}"
+                        Text="加载更多" />
+                </StackLayout>
+            </ListView.Footer>
+        </ListView>
+        <!--<CollectionView
             Grid.Row="1"
             ItemsSource="{Binding Songs}"
             RemainingItemsThreshold="5"
@@ -58,7 +79,7 @@
                         Text="加载更多" />
                 </StackLayout>
             </CollectionView.Footer>
-        </CollectionView>
+        </CollectionView>-->
 
         <ActivityIndicator
             Grid.RowSpan="2"

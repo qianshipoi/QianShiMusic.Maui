@@ -11,6 +11,8 @@ namespace QianShiMusic
         {
             InitializeComponent();
 
+            UserAppTheme = Settings.Theme;
+
             MainPage = ServiceHelper.GetRequiredService<SplashScreenPage>();
         }
     }

@@ -27,10 +27,10 @@ namespace QianShiMusic.ViewModels
             CurrentAppTheme = Settings.Theme;
 
             Languages = new List<CultureInfo>()
-        {
-            new CultureInfo("zh-CN"),
-            new CultureInfo("en-US"),
-        };
+            {
+                new CultureInfo("zh-CN"),
+                new CultureInfo("en-US"),
+            };
             CurrentLanguage = Languages.FirstOrDefault(x => string.Compare(x.Name, Settings.Language, true) == 0);
         }
 
