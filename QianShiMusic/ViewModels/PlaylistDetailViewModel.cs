@@ -14,11 +14,10 @@ namespace QianShiMusic.ViewModels
     {
         private readonly IMusicService _musicService;
         private readonly INotificationService _notificationService;
+        private readonly IDispatcher _dispatcher;
 
         private const int Limit = 30;
         private int _offset = 0;
-        private long _id;
-
 
         public ObservableCollection<Song> Songs { get; private set; }
 
@@ -41,29 +40,37 @@ namespace QianShiMusic.ViewModels
         [ObservableProperty]
         private bool _hasMore;
 
-        public PlaylistDetailViewModel(IMusicService musicService, INotificationService notificationService)
+        public PlaylistDetailViewModel(IMusicService musicService, INotificationService notificationService, IDispatcher dispatcher)
         {
             _musicService = musicService;
             _notificationService = notificationService;
             Songs = new ObservableCollection<Song>();
+            _dispatcher = dispatcher;
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             var result = long.TryParse(query["Id"]?.ToString(), out var id);
-            if (result)
+
+            if (!result)
             {
-                _id = id;
-                Task.Run(async () =>
-                {
-                    await GetDetailAsync();
-                    await Refresh();
-                });
+                Shell.Current.Navigation.PopAsync();
+                return;
             }
+
+            Task.Run(async () => {
+                await GetDetailAsync(id);
+                await Refresh();
+            });
         }
 
         private async Task LoadingHandleAsync(Func<Task> task)
         {
+            if (IsBusy)
+            {
+                return;
+            }
+
             IsBusy = true;
             try
             {
@@ -79,18 +86,19 @@ namespace QianShiMusic.ViewModels
             }
         }
 
-        private async Task GetDetailAsync()
+        private async Task GetDetailAsync(long id)
         {
-            await LoadingHandleAsync(async () =>
-            {
-                var response = await _musicService.PlaylistDetail(new NeteaseCloudMusicApi.Requests.PlaylistdetailRequest(_id));
+            await LoadingHandleAsync(async () => {
+                var response = await _musicService.PlaylistDetail(new NeteaseCloudMusicApi.Requests.PlaylistdetailRequest(id));
                 if (response.Code != 200)
                 {
                     await _notificationService.Show(response.Msg ?? response.Message ?? "获取歌单详情失败！");
                     return;
                 }
 
-                PlaylistDetail = response.Playlist;
+                await _dispatcher.DispatchAsync(() => {
+                    PlaylistDetail = response.Playlist;
+                });
             });
         }
 
@@ -100,9 +108,13 @@ namespace QianShiMusic.ViewModels
         [RelayCommand(CanExecute = nameof(CanRefresh))]
         private async Task Refresh()
         {
-            await LoadingHandleAsync(async () =>
+
+            if (PlaylistDetail is null || PlaylistDetail.Id <= 0)
             {
-                var response = await _musicService.PlaylistTrackAll(new NeteaseCloudMusicApi.Requests.PlaylistTrackAllRequest(_id)
+                return;
+            }
+            await LoadingHandleAsync(async () => {
+                var response = await _musicService.PlaylistTrackAll(new NeteaseCloudMusicApi.Requests.PlaylistTrackAllRequest(PlaylistDetail.Id)
                 {
                     Limit = Limit,
                     Offset = _offset
@@ -118,10 +130,12 @@ namespace QianShiMusic.ViewModels
 
                 HasMore = CanRefresh();
 
-                foreach (var song in response.Songs)
-                {
-                    Songs.Add(song);
-                }
+                await _dispatcher.DispatchAsync(() => {
+                    foreach (var song in response.Songs)
+                    {
+                        Songs.Add(song);
+                    }
+                });
             });
         }
     }

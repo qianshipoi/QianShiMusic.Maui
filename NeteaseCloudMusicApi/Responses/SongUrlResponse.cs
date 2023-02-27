@@ -1,7 +1,6 @@
 ﻿namespace NeteaseCloudMusicApi.Responses;
 
-public class SongUrlResponse
+public class SongUrlResponse : BaseResponse
 {
-    public int Code { get; set; }
     public List<SongUrl> Data { get; set; } = new();
 }

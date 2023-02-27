@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="QianShiMusic.Controls.PlayBar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+    xmlns:models="clr-namespace:QianShiMusic.Models"
+    Padding="20">
+    <Frame
+        Padding="0"
+        BackgroundColor="White"
+        CornerRadius="12"
+        IsClippedToBounds="True"
+        StyleClass="Elevation1">
+        <Grid
+            ColumnDefinitions="Auto,*,Auto"
+            ColumnSpacing="16"
+            RowDefinitions="*,*"
+            RowSpacing="8">
+            <Image
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                Source="https://img.paulzzh.com/touhou/random" />
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="海阔天空"
+                VerticalOptions="Center" />
+            <Slider
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalOptions="Center" />
+            <StackLayout
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                Margin="0,0,16,0"
+                Orientation="Horizontal"
+                Spacing="8">
+                <ImageButton Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily}, Color={StaticResource Gray400}, Glyph={x:Static fa:Solid.CaretLeft}}" />
+                <ImageButton Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily}, Color={StaticResource Gray400}, Glyph={x:Static fa:Solid.Play}}" />
+                <ImageButton Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily}, Color={StaticResource Gray400}, Glyph={x:Static fa:Solid.CaretRight}}" />
+                <ImageButton Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily}, Color={StaticResource Gray400}, Glyph={x:Static fa:Solid.AngleUp}}" />
+            </StackLayout>
+        </Grid>
+    </Frame>
+</ContentView>

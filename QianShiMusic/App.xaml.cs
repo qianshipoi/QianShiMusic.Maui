@@ -15,5 +15,18 @@ namespace QianShiMusic
 
             MainPage = ServiceHelper.GetRequiredService<SplashScreenPage>();
         }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            var window = base.CreateWindow(activationState);
+            window.Title = "QianShi Music";
+            window.MinimumHeight = 800;
+            window.MinimumWidth = 1200;
+
+            window.Height = 800;
+            window.Width = 1200;
+
+            return window;
+        }
     }
 }

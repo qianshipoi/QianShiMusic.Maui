@@ -133,4 +133,13 @@ public interface IMusicService
     /// <returns></returns>
     [Get("/playlist/track/all")]
     Task<PlaylistTrackAllResponse> PlaylistTrackAll(PlaylistTrackAllRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 获取音乐 url
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/song/url")]
+    Task<SongUrlResponse> SongUrl(SongUrlRequest request, CancellationToken cancellationToken = default);
 }

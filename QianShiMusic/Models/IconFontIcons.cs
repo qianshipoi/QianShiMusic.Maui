@@ -6,6 +6,9 @@
     /// </summary>
     public static class IconFontIcons
     {
+        public const string FARegularFontFamily = "FARegular";
+        public const string FASolidFontFamily = "FASolid";
+
         public const string FontFamily = "IconFont";
 
         public const string Language = "\ue9cf";

@@ -228,5 +228,15 @@ namespace NeteaseCloudMusicApi.Test
             });
             Assert.Equal(200, response.Code);
         }
+
+        [Fact]
+        public async Task SongUrl()
+        {
+            var response = await _musicService.SongUrl(new Requests.SongUrlRequest("24381616")
+            {
+                Time = DateTime.Now.Ticks
+            });
+            Assert.Equal(200, response.Code);
+        }
     }
 }

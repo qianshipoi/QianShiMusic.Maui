@@ -6,6 +6,8 @@ using Mopups.Hosting;
 
 using NeteaseCloudMusicApi;
 
+using Plugin.Maui.Audio;
+
 using QianShiMusic.IServices;
 using QianShiMusic.Models;
 using QianShiMusic.Services;
@@ -33,6 +35,7 @@ namespace QianShiMusic
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("iconfont.ttf", IconFontIcons.FontFamily);
+                    fonts.AddFontAwesomeIconFonts();
                 })
                 .ConfigureMopups()
                 .Services.ConfigureService();
@@ -52,6 +55,8 @@ namespace QianShiMusic
             services.AddSingleton<FoundPage, FoundPageViewModel>();
             services.AddSingleton<SettingsPage, SettingsPageViewModel>();
             services.AddSingleton<LoginPage, LoginViewModel>();
+
+            services.AddSingleton(AudioManager.Current);
 
             services.AddTransientWithShellRoute<PlaylistDetailPage, PlaylistDetailViewModel>(nameof(PlaylistDetailPage));
 

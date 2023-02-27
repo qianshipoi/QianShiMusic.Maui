@@ -13,4 +13,9 @@ public class SongUrlRequest : BaseRequest
     /// </summary>
     [AliasAs("br")]
     public int? Br { get; set; }
+
+    public SongUrlRequest(string ids)
+    {
+        Ids = ids;
+    }
 }

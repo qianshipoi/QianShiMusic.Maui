@@ -59,9 +59,11 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Mopups" Version="1.1.1" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="1.0.0" />
 		<PackageReference Include="QRCoder" Version="1.4.3" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 		<PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.3.1" />
+		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.3.1" />
 		<PackageReference Include="UraniumUI.Material" Version="2.3.1" />
 	</ItemGroup>
 
@@ -93,6 +95,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\PlayBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\PlaylistCardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
