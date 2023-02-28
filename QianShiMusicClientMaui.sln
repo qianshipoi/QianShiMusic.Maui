@@ -9,13 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeteaseCloudMusicApi", "Net
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeteaseCloudMusicApi.Test", "NeteaseCloudMusicApi.Test\NeteaseCloudMusicApi.Test.csproj", "{29E3E59D-F1CA-4BBD-9346-5B2164C84952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic", "QianShiMusic\QianShiMusic.csproj", "{45969E52-E9E5-418A-B82A-0B86C8E03B6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QianShiMusic", "QianShiMusic\QianShiMusic.csproj", "{45969E52-E9E5-418A-B82A-0B86C8E03B6E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{667E3E43-3133-481A-A091-75A687564870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic.IServices", "Services\QianShiMusic.IServices\QianShiMusic.IServices.csproj", "{6F3CF612-568C-4EE0-832D-E36451491E5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QianShiMusic.IServices", "Services\QianShiMusic.IServices\QianShiMusic.IServices.csproj", "{6F3CF612-568C-4EE0-832D-E36451491E5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic.Services", "Services\QianShiMusic.Services\QianShiMusic.Services.csproj", "{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QianShiMusic.Services", "Services\QianShiMusic.Services\QianShiMusic.Services.csproj", "{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QianShiMusic.MauiBlazor", "QianShiMusic.MauiBlazor\QianShiMusic.MauiBlazor.csproj", "{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,12 @@ Global
 		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33AD2DCA-A94E-4FF2-B1C5-1F59F286CAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE07870-62F2-4BA0-A511-8B4B86BCEB92}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
