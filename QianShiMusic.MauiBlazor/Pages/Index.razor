@@ -1,0 +1,37 @@
+﻿@page "/"
+@inject IMusicService MusicService;
+
+<h1>Hello, world!</h1>
+
+@if (playlists != null)
+{
+    <div style="display:grid;grid-template-columns:repeat(4,auto);grid-gap:20px;">
+        @foreach (var playlist in playlists)
+        {
+            <MudCard>
+                <MudCardMedia Image="@playlist.CoverImgUrl" Style="aspect-ratio:1/1;width:100%;height:auto" />
+                <MudCardContent>
+                    <MudText Typo="Typo.h5">@playlist.Name</MudText>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary">Share</MudButton>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+                </MudCardActions>
+            </MudCard>
+        }
+    </div>
+}
+
+
+@code {
+    private IReadOnlyList<Playlist> playlists;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await MusicService.TopPlaylist(new TopPlaylistRequest("华语"));
+
+        response.Playlists.ForEach(p => p.CoverImgUrl += "?param=240y240");
+
+        playlists = response.Playlists;
+    }
+}
