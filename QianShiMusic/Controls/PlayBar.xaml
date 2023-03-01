@@ -6,12 +6,14 @@
     xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
     xmlns:models="clr-namespace:QianShiMusic.Models"
     Padding="20">
-    <Frame
+    <Border
         Padding="0"
         BackgroundColor="White"
-        CornerRadius="12"
-        IsClippedToBounds="True"
-        StyleClass="Elevation1">
+        StrokeThickness="0"
+        StyleClass="Elevation2">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="12" />
+        </Border.StrokeShape>
         <Grid
             ColumnDefinitions="Auto,*,Auto"
             ColumnSpacing="16"
@@ -20,7 +22,8 @@
             <Image
                 Grid.RowSpan="2"
                 HorizontalOptions="Fill"
-                Source="https://img.paulzzh.com/touhou/random" />
+                Source="https://img.paulzzh.com/touhou/random"
+                WidthRequest="{Binding Source={x:RelativeSource Self}, Path=HeightRequest}" />
             <Label
                 Grid.Column="1"
                 FontAttributes="Bold"
@@ -43,5 +46,5 @@
                 <ImageButton Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily}, Color={StaticResource Gray400}, Glyph={x:Static fa:Solid.AngleUp}}" />
             </StackLayout>
         </Grid>
-    </Frame>
+    </Border>
 </ContentView>
