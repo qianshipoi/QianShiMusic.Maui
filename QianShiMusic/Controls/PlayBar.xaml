@@ -15,7 +15,7 @@
     VerticalOptions="End">
     <Border
         Padding="0"
-        BackgroundColor="White"
+        BackgroundColor="{StaticResource Primary}"
         StrokeThickness="0"
         StyleClass="Elevation2">
         <Border.StrokeShape>
@@ -46,41 +46,47 @@
                 <ImageButton
                     Margin="0"
                     Padding="0"
-                    BackgroundColor="red"
+                    HeightRequest="32"
                     HorizontalOptions="Center"
                     Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily},
                                        Color={StaticResource Gray600},
                                        Glyph={x:Static fa:Solid.CaretLeft},
                                        Size=26}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
                 <ImageButton
                     Margin="0"
                     Padding="0"
-                    BackgroundColor="red"
+                    HeightRequest="32"
                     HorizontalOptions="Center"
                     Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily},
                                        Color={StaticResource Gray600},
                                        Glyph={x:Static fa:Solid.Play},
                                        Size=26}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
                 <ImageButton
                     Margin="0"
                     Padding="0"
+                    HeightRequest="32"
                     HorizontalOptions="Center"
                     Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily},
                                        Color={StaticResource Gray600},
                                        Glyph={x:Static fa:Solid.CaretRight},
                                        Size=26}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
                 <ImageButton
                     Margin="0"
                     Padding="0"
+                    HeightRequest="32"
                     HorizontalOptions="Center"
                     Source="{FontImage FontFamily={x:Static models:IconFontIcons.FASolidFontFamily},
                                        Color={StaticResource Black},
                                        Glyph={x:Static fa:Solid.AngleUp},
                                        Size=26}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
             </StackLayout>
         </Grid>
     </Border>

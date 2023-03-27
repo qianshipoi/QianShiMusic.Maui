@@ -15,6 +15,7 @@
         <Label
             Grid.Column="1"
             FontSize="22"
+            MaxLines="2"
             Text="{Binding Name}"
             VerticalOptions="Center" />
         <Label

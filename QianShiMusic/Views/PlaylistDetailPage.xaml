@@ -9,29 +9,41 @@
     xmlns:vms="clr-namespace:QianShiMusic.ViewModels"
     Title="PlaylistDetailPage"
     x:DataType="vms:PlaylistDetailViewModel">
-    <Grid
-        Padding="20"
-        RowDefinitions="Auto,*"
-        RowSpacing="16">
-        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+    <Grid RowDefinitions="180,*" RowSpacing="16">
+        <Image
+            Aspect="AspectFill"
+            HeightRequest="{Binding Source={x:RelativeSource Self}, Path=WidthRequest}"
+            Opacity=".34"
+            Source="{Binding PlaylistDetail.CoverImgUrl, StringFormat='{0}?param=380y380'}" />
+
+        <Grid ColumnDefinitions="120,*">
             <Image
+                Margin="16,16,0,16"
                 Aspect="AspectFill"
-                HeightRequest="{Binding Source={x:RelativeSource Self}, Path=WidthRequest}"
-                Source="{Binding PlaylistDetail.CoverImgUrl, StringFormat='{0}?param=380y380'}"
-                WidthRequest="240" />
-            <Grid
-                Grid.Column="1"
-                RowDefinitions="Auto,*,Auto"
-                RowSpacing="8">
+                HeightRequest="120"
+                Source="{Binding PlaylistDetail.CoverImgUrl, StringFormat='{0}?param=180y180'}"
+                VerticalOptions="Start"
+                WidthRequest="120" />
+
+            <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto">
                 <Label
+                    Grid.Column="1"
+                    Margin="16,16,16,0"
                     toolkit:DockLayout.DockPosition="Top"
                     FontAttributes="Bold"
-                    FontSize="28"
+                    FontSize="22"
                     Text="{Binding PlaylistDetail.Name}" />
-                <Label Grid.Row="1" Text="{Binding PlaylistDetail.Description}" />
-
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="16,0"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="2"
+                    Text="{Binding PlaylistDetail.Description}" />
                 <StackLayout
                     Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="16,0,16,16"
                     Orientation="Horizontal"
                     Spacing="8">
                     <Button Text="播放" />
@@ -39,6 +51,7 @@
                 </StackLayout>
             </Grid>
         </Grid>
+
         <ListView
             Grid.Row="1"
             ItemsSource="{Binding Songs}"
