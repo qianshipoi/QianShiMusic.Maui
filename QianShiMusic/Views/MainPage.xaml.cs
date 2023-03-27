@@ -2,11 +2,11 @@ using QianShiMusic.ViewModels;
 
 namespace QianShiMusic.Views;
 
-public partial class MainPage : ContentPage
+public partial class MainPage
 {
 	public MainPage(MainPageViewModel viewModel)
 	{
-		InitializeComponent();
 		this.BindingContext = viewModel;
+		InitializeComponent();
 	}
 }

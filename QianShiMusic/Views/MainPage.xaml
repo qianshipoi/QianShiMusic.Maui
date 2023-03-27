@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<pages:BaseContentPage
     x:Class="QianShiMusic.Views.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:QianShiMusic.Controls"
     xmlns:musicModels="clr-namespace:NeteaseCloudMusicApi.Models;assembly=NeteaseCloudMusicApi"
+    xmlns:pages="clr-namespace:QianShiMusic.Views.Pages"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     xmlns:vms="clr-namespace:QianShiMusic.ViewModels"
@@ -36,6 +37,6 @@
             </ListView.Behaviors>
         </ListView>
 
-        <controls:PlayBar HeightRequest="140" VerticalOptions="End" />
+        <controls:PlayBar ZIndex="1" />
     </Grid>
-</ContentPage>
+</pages:BaseContentPage>

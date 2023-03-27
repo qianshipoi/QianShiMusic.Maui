@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace QianShiMusic.ViewModels
 {
-    public partial class MainPageViewModel : BaseViewModel
+    public partial class MainPageViewModel : BasePageViewModel
     {
         private readonly IMusicService _musicService;
         private readonly INotificationService _notificationService;
@@ -31,8 +31,6 @@ namespace QianShiMusic.ViewModels
 
             Playlists = new ObservableCollection<Playlist>();
             More = true;
-
-            Task.Run(GetTopListAsync);
         }
 
         public async Task GetTopListAsync()
@@ -72,6 +70,14 @@ namespace QianShiMusic.ViewModels
             }
         }
 
+
+        public override void OnNavigatedTo()
+        {
+            base.OnNavigatedTo();
+            Task.Run(GetTopListAsync);
+        }
+
+
         [RelayCommand]
         private async Task ToPlaylistDetail(Playlist playlist)
         {
@@ -86,6 +92,12 @@ namespace QianShiMusic.ViewModels
             };
 
             await Shell.Current.GoToAsync(nameof(PlaylistDetailPage), parameters);
+        }
+
+        [RelayCommand]
+        private async Task Tapped()
+        {
+            await _notificationService.Show("tapped.");
         }
     }
 }
