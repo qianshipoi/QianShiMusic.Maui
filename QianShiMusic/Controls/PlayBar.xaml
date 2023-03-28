@@ -11,16 +11,12 @@
     BackgroundColor="Transparent"
     CascadeInputTransparent="False"
     HeightRequest="120"
-    InputTransparent="False"
     VerticalOptions="End">
-    <Border
+    <Frame
         Padding="0"
         BackgroundColor="{StaticResource Primary}"
-        StrokeThickness="0"
+        CornerRadius="12"
         StyleClass="Elevation2">
-        <Border.StrokeShape>
-            <RoundRectangle CornerRadius="12" />
-        </Border.StrokeShape>
         <Grid
             Padding="8,0"
             ColumnDefinitions="Auto,*,Auto"
@@ -89,5 +85,5 @@
                     WidthRequest="32" />
             </StackLayout>
         </Grid>
-    </Border>
+    </Frame>
 </ContentView>

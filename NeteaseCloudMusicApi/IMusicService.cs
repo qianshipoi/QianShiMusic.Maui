@@ -142,4 +142,21 @@ public interface IMusicService
     /// <returns></returns>
     [Get("/song/url")]
     Task<SongUrlResponse> SongUrl(SongUrlRequest request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 私人FM
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/personal_fm")]
+    Task<PersonalFmResponse> PersonalFm(BaseRequest? request = null, CancellationToken cancellationToken = default);
+    /// <summary>
+    /// 歌曲详情
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Get("/song/detail")]
+    Task<SongDetailResponse> SongDetail(SongDetailRequest request, CancellationToken cancellationToken = default);
 }

@@ -41,7 +41,6 @@ public class TopSong
     public int Id { get; set; }
     public bool Exclusive { get; set; }
     public Privilege Privilege { get; set; } = default!;
-    public int MVid { get; set; }
     public List<string> TransNames { get; set; } = new();
     public string? RecommendReason { get; set; }
     public string? Alg { get; set; }

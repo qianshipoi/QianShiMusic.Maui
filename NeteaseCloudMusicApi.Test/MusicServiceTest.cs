@@ -238,5 +238,21 @@ namespace NeteaseCloudMusicApi.Test
             });
             Assert.Equal(200, response.Code);
         }
+
+        [Fact]
+        public async Task PersonalFm()
+        {
+            var response = await _musicService.PersonalFm();
+            Assert.Equal(200, response.Code);
+        }
+
+        [Fact]
+        public async Task SongDetail()
+        {
+            var response = await _musicService.SongDetail(new Requests.SongDetailRequest("347230,347231"));
+            Assert.Equal(200, response.Code);
+            Assert.Equal(2, response.Songs.Count);
+            Assert.Equal(2, response.Songs.Count);
+        }
     }
 }

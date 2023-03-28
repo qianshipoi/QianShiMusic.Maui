@@ -61,7 +61,8 @@ namespace QianShiMusic
             services.AddTransientWithShellRoute<PlaylistDetailPage, PlaylistDetailViewModel>(nameof(PlaylistDetailPage));
 
             services.AddTransient<ILoginService, LoginService>();
-            services.AddTransient<INotificationService, NotificationService>();
+            services.AddSingleton<INotificationService, NotificationService>();
+            services.AddSingleton<ITrackService, NeteaseTrackService>();
 
             services.AddSingleton(typeof(IMusicService), (serviceProvider) => {
                 var cookieStr = Preferences.Get("cookie", string.Empty);

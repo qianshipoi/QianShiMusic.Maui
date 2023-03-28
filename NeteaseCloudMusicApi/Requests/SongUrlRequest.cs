@@ -1,5 +1,6 @@
 ﻿namespace NeteaseCloudMusicApi.Requests;
 
+
 public class SongUrlRequest : BaseRequest
 {
     /// <summary>
