@@ -1,6 +1,6 @@
 ﻿namespace NeteaseCloudMusicApi.Models;
 
-public class TopSong
+public class TopSong : ITrack
 {
     public bool Starred { get; set; }
     public int Popularity { get; set; }
@@ -38,7 +38,7 @@ public class TopSong
     public string Disc { get; set; } = default!;
     public int No { get; set; }
     public string Name { get; set; } = default!;
-    public int Id { get; set; }
+    public long Id { get; set; }
     public bool Exclusive { get; set; }
     public Privilege Privilege { get; set; } = default!;
     public List<string> TransNames { get; set; } = new();

@@ -1,6 +1,9 @@
 ﻿namespace NeteaseCloudMusicApi.Models;
-
-public class Song
+public interface ITrack
+{
+    public long Id { get; set; }
+}
+public partial class Song : ITrack
 {
     [JsonPropertyName("al")]
     public Album Album { get; set; } = default!;

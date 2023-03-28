@@ -28,6 +28,7 @@ namespace QianShiMusic
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement()
                 .UseUraniumUI()
                 .UseUraniumUIMaterial()
                 .UseSkiaSharp()
@@ -63,6 +64,7 @@ namespace QianShiMusic
             services.AddTransient<ILoginService, LoginService>();
             services.AddSingleton<INotificationService, NotificationService>();
             services.AddSingleton<ITrackService, NeteaseTrackService>();
+            services.AddSingleton<IPlayer,MediaElementPlayer>();
 
             services.AddSingleton(typeof(IMusicService), (serviceProvider) => {
                 var cookieStr = Preferences.Get("cookie", string.Empty);

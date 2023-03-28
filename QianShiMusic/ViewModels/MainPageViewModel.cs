@@ -5,6 +5,7 @@ using NeteaseCloudMusicApi;
 using NeteaseCloudMusicApi.Models;
 
 using QianShiMusic.IServices;
+using QianShiMusic.Models;
 using QianShiMusic.Views;
 
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ namespace QianShiMusic.ViewModels
     {
         private readonly IMusicService _musicService;
         private readonly INotificationService _notificationService;
+        private readonly IPlayer _player;
 
         [ObservableProperty]
         private bool _more;
@@ -24,10 +26,11 @@ namespace QianShiMusic.ViewModels
 
         public ObservableCollection<Playlist> Playlists { get; }
 
-        public MainPageViewModel(IMusicService musicService, INotificationService notificationService)
+        public MainPageViewModel(IMusicService musicService, INotificationService notificationService, IPlayer player)
         {
             _musicService = musicService;
             _notificationService = notificationService;
+            _player = player;
 
             Playlists = new ObservableCollection<Playlist>();
             More = true;
@@ -70,13 +73,11 @@ namespace QianShiMusic.ViewModels
             }
         }
 
-
         public override void OnNavigatedTo()
         {
             base.OnNavigatedTo();
             Task.Run(GetTopListAsync);
         }
-
 
         [RelayCommand]
         private async Task ToPlaylistDetail(Playlist playlist)
@@ -86,12 +87,15 @@ namespace QianShiMusic.ViewModels
                 return;
             }
 
-            var parameters = new Dictionary<string, object>()
-            {
-                { "Id", playlist.Id },
-            };
 
-            await Shell.Current.GoToAsync(nameof(PlaylistDetailPage), parameters);
+            await _player.PlayPlaylistById(playlist.Id);
+
+            //var parameters = new Dictionary<string, object>()
+            //{
+            //    { "Id", playlist.Id },
+            //};
+
+            //await Shell.Current.GoToAsync(nameof(PlaylistDetailPage), parameters);
         }
 
         [RelayCommand]
@@ -99,5 +103,6 @@ namespace QianShiMusic.ViewModels
         {
             await _notificationService.Show("tapped.");
         }
+
     }
 }
